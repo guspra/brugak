@@ -36,7 +36,7 @@ class Web extends CI_Controller {
 
 				try {
 					$client = new Client([
-						'base_uri' => 'http://localhost/api/index.php/',
+						'base_uri' => 'http://localhost/brugakapi/index.php/',
 						'headers' => [
 							'Client-Service' => 'frontend-client',
 							'Auth-Key' => 'simplerestapi',
@@ -71,17 +71,13 @@ class Web extends CI_Controller {
 						$userID = $login_result['id'];
 						$user_role = $login_result['role'];
 						$user_token = $login_result['token'];
-						$user_dipa = $login_result['id_dipa'];
 						$user_nama = $login_result['nama'];
-						$user_lokasi = $login_result['lokasi'];
 
 						$this->session->set_userdata('username', "$username");
 						$this->session->set_userdata('nama', "$user_nama");
 						$this->session->set_userdata('id_user', "$userID");
 						$this->session->set_userdata('level', "$user_role");
 						$this->session->set_userdata('token', "$user_token");
-						$this->session->set_userdata('id_dipa', "$user_dipa");
-						$this->session->set_userdata('lokasi', "$user_lokasi");
 
 						$this->session->set_userdata('jml_notif_bell', "0");
 

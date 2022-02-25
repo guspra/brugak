@@ -3,15 +3,8 @@
 $username   = $this->session->userdata('username');
 $level   = $this->session->userdata('level');
 $nama	= $this->session->userdata('nama');
-$id_dipa	= $this->session->userdata('id_dipa');
 
-$dipa_name = '';
-if ($id_dipa != '00') {
-	$dipa_user = $this->Guzzle_model->getDetailDipa($id_dipa);
-	$dipa_name = $dipa_user['nama'];
-}
-
-$foto = "img/user/user-default.jpg";
+$foto = "img/user/user-default.png";
 
 $menu 		= strtolower($this->uri->segment(1));
 $sub_menu = strtolower($this->uri->segment(2));
@@ -97,7 +90,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 			<div class="container-fluid">
 				<!-- begin mobile sidebar expand / collapse button -->
 				<div class="navbar-header">
-					<!-- <a href="" class="navbar-brand"><span class="navbar-logo"><i class="fa fa-vcard"></i></span> &nbsp;<b>Panel</b> <?php //echo ucwords($level); ?></a> -->
+					<a href="" class="navbar-brand"><span class="navbar-logo"><center><b>BRUGAK</b></center></a>
 					<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -108,6 +101,13 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 
 				<!-- begin header navigation right -->
 				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					</li>
 					<li class="dropdown">
 						<a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle icon" aria-expanded="false">
 							<i class="ion-ios-bell"></i>
@@ -149,7 +149,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 						</div>
 						<div class="info col-md-8">
 							<?php echo ucwords($nama); ?>
-							<small><?php echo ucwords($dipa_name); ?></small>
+							<!-- <small><?php //echo ucwords($dipa_name); ?></small> -->
 						</div>
 					</li>
 				</ul>
@@ -157,7 +157,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 
 				<!-- begin sidebar nav -->
 				<ul class="nav">
-					<li class="nav-header"><big ">Menu Navigasi</big></li>
+					<li class="nav-header"><big>MENU NAVIGASI</big></li>
 					<li class="has-sub<?php if($menu=='users' AND $sub_menu=='' or $menu=='dashboard'){echo " active";} ?>">
 						<a href="dashboard.html">
 						    <i class="fa fa-th-large"></i>
@@ -171,128 +171,22 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 							</a>
 						</li>
 					<?php endif; ?>
-					<li class="has-sub <?php if($menu=='perencanaan' OR ($menu=='dipa' AND $sub_menu=='v') OR ($menu=='folder_data_dukung' AND $sub_menu=='v') OR ($menu=='data_dukung' AND $sub_menu=='v') OR ($menu=='rpd' AND $sub_menu=='v') OR ($menu=='ankabut' AND $sub_menu=='v')){echo " active";} ?>">
+					<li class="has-sub <?php if($menu=='laporan_harian' OR $menu=='laporan_bulanan'){echo " active";} ?>">
 						<a href="javascript:;">
 							<b class="caret pull-right"></b>
-							<i class="fa fa-calculator bg-gray"></i>
-							<span>Perencanaan</span>
+							<i class="fa fa-check-square bg-gray"></i>
+							<span>Laporan Kebersihan</span>
 						</a>
 						<ul class="sub-menu">
-							<li <?php if($menu=='dipa'){echo " class='active'";} ?>>
+							<li <?php if($menu=='laporan_harian'){echo " class='active'";} ?>>
 								<a href="dipa/v.html">
-									<i class="fa fa-file-text"></i> <span>DIPA</span>
+									<i class="fa fa-file-text"></i> <span>Laporan Harian</span>
 								</a>
 							</li>
-							<!-- <li <?php //if($menu=='revisi_dipa'){echo " class='active'";} ?>>
-								<a href="revisi_dipa">
-									<i class="fa fa-pencil-square"></i> <span>Usulan Revisi DIPA</span>
-								</a>
-							</li> -->
-							<li class="has-sub <?php if($menu=='data_dukung' or $menu=='folder_data_dukung' or $menu=='ankabut'){echo " active";} ?>">
-								<a href="javascript:;">
-									<b class="caret pull-right"></b>
-									<i class="fa fa-calculator bg-gray"></i>
-									<span>Penyusunan Anggaran</span>
-								</a>
-								<ul class="sub-menu">
-									<li <?php if($menu=='ankabut'){echo " class='active'";} ?>>
-										<a href="ankabut">
-											<i class="fa fa-file"></i> <span>Analisa Kebutuhan Anggaran</span>
-										</a>
-									</li>
-									<li <?php if($menu=='data_dukung' or $menu=='folder_data_dukung'){echo " class='active'";} ?>>
-										<a href="folder_data_dukung">
-											<i class="fa fa-folder-open"></i> <span>Data Dukung</span>
-										</a>
-									</li>
-								</ul>
-							</li>
-							<li <?php if($menu=='rpd' AND $sub_menu=='v'){echo " class='active'";} ?>>
+							<li <?php if($menu=='laporan_bulanan'){echo " class='active'";} ?>>
 								<a href="rpd">
-									<i class="fa fa-calendar-check-o"></i> <span>Rencana Penarikan Dana</span>
+									<i class="fa fa-calendar-check-o"></i> <span>Laporan Bulanan</span>
 								</a>
-							</li>
-						</ul>
-					</li>
-					<li class="has-sub<?php if($menu=='revisi_dipa' AND $sub_menu=='' or $menu=='revisi_dipa'){echo " active";} ?>">
-						<a href="revisi_dipa">
-							<i class="fa fa-pencil-square"></i> <span>Usulan Revisi DIPA</span>
-						</a>
-					</li>
-					<li class="has-sub<?php if($menu=='pelaksanaan_anggaran' AND $sub_menu=='' or $menu=='pelaksanaan_anggaran'){echo " active";} ?>">
-						<a href="pelaksanaan_anggaran">
-						    <i class="fa fa-line-chart"></i>
-						    <span>Pelaksanaan Anggaran</span>
-					   </a>
-					</li>
-					
-					<!-- <li class="has-sub<?php //if($menu=='data_kontrak' AND $sub_menu=='' or $menu=='data_kontrak'){echo " active";} ?>">
-						<a href="">
-						    <i class="fa fa-cart-plus"></i>
-						    <span>Data Kontrak</span>
-					   </a>
-					</li> -->
-					<li class="has-sub <?php if($menu=='monev'){echo " active";} ?>">
-						<a href="javascript:;">
-							<b class="caret pull-right"></b>
-							<i class="fa fa-newspaper-o bg-gray"></i>
-							<span>Monitoring dan Evaluasi</span>
-						</a>
-						<ul class="sub-menu">
-							<li class="has-sub <?php if($sub_menu3=='t1' OR $sub_menu3=='t2' OR $sub_menu3=='t3'OR $sub_menu3=='t4'){echo " active";} ?>">
-								<a href="javascript:;">
-									<b class="caret pull-right"></b>
-									<i class="fa fa-calendar-check-o bg-gray"></i>
-									<span>Rutin</span>
-								</a>
-								<ul class="sub-menu">
-									<li <?php if($sub_menu3=='t1'){echo " class='active'";} ?>>
-										<a href="monev/v/t1">
-											<i class="fa fa-commenting"></i> <span>Triwulan I</span>
-										</a>
-									</li>
-									<li <?php if($sub_menu3=='t2'){echo " class='active'";} ?>>
-										<a href="monev/v/t2">
-											<i class="fa fa-commenting"></i> <span>Triwulan II</span>
-										</a>
-									</li>
-									<li <?php if($sub_menu3=='t3'){echo " class='active'";} ?>>
-										<a href="monev/v/t3">
-											<i class="fa fa-commenting"></i> <span>Triwulan III</span>
-										</a>
-									</li>
-									<li <?php if($sub_menu3=='t4'){echo " class='active'";} ?>>
-										<a href="monev/v/t4">
-											<i class="fa fa-commenting"></i> <span>Triwulan IV</span>
-										</a>
-									</li>
-								</ul>
-							</li>
-							<li <?php if($sub_menu3=='i'){echo " class='active'";} ?>>
-								<a href="monev/v/i">
-									<i class="fa fa-calendar"></i> <span>Insidental</span>
-								</a>
-							</li>
-						</ul>
-					</li>
-					<li class="has-sub">
-						<a href="javascript:;">
-							<b class="caret pull-right"></b>
-							<i class="fa fa-folder-open bg-gray"></i>
-							<span>Pelaporan</span>
-						</a>
-						<ul class="sub-menu">
-							<li class="has-sub">
-								<a href="https://sites.google.com/view/pelungguh/home/laporan-keuangan-kinerja" target="_blank">
-									<i class="fa fa-folder"></i>
-									<span>Laporan Keuangan dan BMN</span>
-							   </a>
-							</li>
-							<li class="has-sub">
-								<a href="https://sites.google.com/view/pelungguh/home/laporan-keuangan-kinerja" target="_blank">
-									<i class="fa fa-folder"></i>
-									<span>Laporan Kinerja</span>
-							   </a>
 							</li>
 						</ul>
 					</li>
@@ -308,7 +202,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 						</a>
 					</li>
 					    <!-- begin sidebar minify button -->
-					<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="ion-ios-arrow-left"></i> <span></span></a></li>
+					<!-- <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="ion-ios-arrow-left"></i> <span></span></a></li> -->
 			        <!-- end sidebar minify button -->
 				</ul>
 				<!-- end sidebar nav -->

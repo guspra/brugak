@@ -14,9 +14,6 @@ class Datapengguna extends CI_Controller {
 		$ceks 	 = $this->session->userdata('username');
 		$id_user = $this->session->userdata('id_user');
 		$level 	 = $this->session->userdata('level');
-		$id_dipa_user = $this->session->userdata('id_dipa');
-		$lokasi_user = $this->session->userdata('lokasi');
-
 		
 		if(!isset($ceks)) {
 			redirect('web/login');
@@ -32,8 +29,6 @@ class Datapengguna extends CI_Controller {
 				if ($value['role'] == 'superadmin') continue;
 				$data['user_list'][$key] = $value;
 			}
-
-			$data['dipa_list'] = $this->Guzzle_model->getDipaList();
 
 			if ($aksi == 't') {
 				$p = "tambah";
@@ -67,8 +62,6 @@ class Datapengguna extends CI_Controller {
 				$data['judul_web'] 	  = "Pengguna";
 			}
 
-
-			
 			$this->load->view('header', $data);
 			$this->load->view("datapengguna/$p", $data);
 			$this->load->view('footer');
@@ -78,9 +71,7 @@ class Datapengguna extends CI_Controller {
 
 			if (isset($_POST['btnsimpan'])) {
 				$nama 	 = htmlentities(strip_tags($this->input->post('nama')));
-				$id_dipa  = htmlentities(strip_tags($this->input->post('id_dipa')));
 				$role  = htmlentities(strip_tags($this->input->post('role')));
-				$lokasi  = htmlentities(strip_tags($this->input->post('lokasi')));
 				$username = htmlentities(strip_tags($this->input->post('username')));
 				$password  = htmlentities(strip_tags($this->input->post('password')));
 				$password2 = htmlentities(strip_tags($this->input->post('password2')));
@@ -105,9 +96,7 @@ class Datapengguna extends CI_Controller {
 						'nama'			 => $nama,
 						'username' 		 => $username,
 						'password' 		 => $password,
-						'role' 			 => $role,
-						'id_dipa' 		 => $id_dipa,
-						'lokasi' 		 => $lokasi
+						'role' 			 => $role
 					);
 					$this->Guzzle_model->createUser($data);
 					$this->session->set_flashdata('msg',

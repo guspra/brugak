@@ -21,7 +21,7 @@ Website: http://www.seantheme.com/color-admin-v3.0/admin/apple/
 .page-sidebar-minified .sidebar .nav > li.has-sub.active > a,
 .label.label-theme,
 .btn.btn-scroll-to-top {
-  background: #20252a;
+  background: #242849;
 }
 .navbar.navbar-inverse .navbar-brand {
   color: #fff !important;
@@ -29,7 +29,7 @@ Website: http://www.seantheme.com/color-admin-v3.0/admin/apple/
 .text-theme,
 .navbar-logo,
 .sidebar .sub-menu > li.active > a:before {
-  color: #393939;
+  color: #007bff;
 }
 
 /* Added in v1.5 */

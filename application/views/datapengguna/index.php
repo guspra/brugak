@@ -43,7 +43,7 @@ $link4 = strtolower($this->uri->segment(4));
                                     <tr>
                                         <th width="1%">No.</th>
                                         <th>Nama</th>
-                                        <th>Satuan Kerja</th>
+                                        <th>Whatsapp</th>
 																				<th>Username</th>
 																				<th>Role</th>
                                         <th width="10%">Opsi</th>
@@ -57,7 +57,7 @@ $link4 = strtolower($this->uri->segment(4));
                                     <tr>
                                         <td><b><?php echo $no++; ?>.</b></td>
 																				<td><?php echo $baris['nama']; ?></td>
-																				<td><?php echo $this->Mcrud->cek_satker($baris['id_dipa']); ?></td>
+																				<td><?php echo $baris['whatsapp']; ?></td>
                                         <td><?php echo $baris['username']; ?></td>
 																				<td><?php echo $baris['role']; ?></td>
 																				<td align="center">
