@@ -35,14 +35,9 @@ $link4 = strtolower($this->uri->segment(4));
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-lg-3">Satuan Kerja</label>
+                    <label class="control-label col-lg-3">Whatsapp</label>
                     <div class="col-lg-9">
-                      <select class="form-control default-select2" name="id_dipa">
-                        <option value="">- Pilih -</option>
-                        <?php foreach ($dipa_list as $key => $value):?>
-                          <option value="<?php echo $value['id']; ?>"><?php echo $value['nama']; ?></option>
-                        <?php endforeach; ?>
-                      </select>
+                      <input type="text" name="whatsapp" class="form-control" value="" placeholder="Whatsapp" required autofocus onfocus="this.value = this.value;">
                     </div>
                   </div>
                   <div class="form-group">
@@ -50,22 +45,10 @@ $link4 = strtolower($this->uri->segment(4));
                     <div class="col-lg-9">
                       <select class="form-control default-select2" name="role" required>
                         <option value="">- Pilih -</option>
-                        <option value="koordinator_wilayah">Koordinator Wilayah</option>
-                        <option value="perencana">Perencana</option>
-                        <option value="keuangan">Keuangan</option>
-                        <option value="ppk">PPK</option>
-                        <option value="kpa">KPA</option>
-                        <option value="pelaksana">Pelaksana</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-lg-3">Lokasi</label>
-                    <div class="col-lg-9">
-                      <select class="form-control default-select2" name="lokasi" required>
-                        <option value="">- Pilih -</option>
-                        <option value="kanwil">Kantor Wilayah</option>
-                        <option value="upt">UPT</option>
+                        <option value="kadivmin">Kepala Divisi Administrasi</option>
+                        <option value="pengawas">Pengawas</option>
+                        <option value="penanggungjawab">Penanggung Jawab</option>
+                        <option value="MR.CLEAN">Mr. Clean</option>
                       </select>
                     </div>
                   </div>

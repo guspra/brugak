@@ -23,7 +23,6 @@ class Datapengguna extends CI_Controller {
 				redirect('404_content');
 			}
 
-			
 			$user_list = $this->Guzzle_model->getAllUser();
 			foreach ($user_list as $key => $value) {
 				if ($value['role'] == 'superadmin') continue;
@@ -42,7 +41,7 @@ class Datapengguna extends CI_Controller {
 			elseif ($aksi == 'h') {
 				$cek_data = $this->Guzzle_model->getUserById($id);
 				if (count($cek_data) != 0 AND $cek_data['role'] != 'superadmin') {
-					$this->db->delete('tbl_user', array('id_user' => $id));
+					$this->Guzzle_model->deleteUser($id);
 					$this->session->set_flashdata('msg',
 						'
 						<div class="alert alert-success alert-dismissible" role="alert">
@@ -71,6 +70,7 @@ class Datapengguna extends CI_Controller {
 
 			if (isset($_POST['btnsimpan'])) {
 				$nama 	 = htmlentities(strip_tags($this->input->post('nama')));
+				$whatsapp 	 = htmlentities(strip_tags($this->input->post('whatsapp')));
 				$role  = htmlentities(strip_tags($this->input->post('role')));
 				$username = htmlentities(strip_tags($this->input->post('username')));
 				$password  = htmlentities(strip_tags($this->input->post('password')));
@@ -94,6 +94,7 @@ class Datapengguna extends CI_Controller {
 				if ($simpan=='y') {
 					$data = array(
 						'nama'			 => $nama,
+						'whatsapp'			 => $whatsapp,
 						'username' 		 => $username,
 						'password' 		 => $password,
 						'role' 			 => $role
@@ -127,22 +128,25 @@ class Datapengguna extends CI_Controller {
 
 			if (isset($_POST['btnupdate'])) {
 				$nama 	 = htmlentities(strip_tags($this->input->post('nama')));
-				$level  = htmlentities(strip_tags($this->input->post('level')));
-				$divisi  = htmlentities(strip_tags($this->input->post('divisi')));
+				$whatsapp 	 = htmlentities(strip_tags($this->input->post('whatsapp')));
+				$role  = htmlentities(strip_tags($this->input->post('role')));
 				$username = htmlentities(strip_tags($this->input->post('username')));
 				$password  = htmlentities(strip_tags($this->input->post('password')));
 				$password2 = htmlentities(strip_tags($this->input->post('password2')));
-				$data_lama = $this->db->get_where('tbl_user', array('id_user'=>$id))->row();
-				$cek_data  = $this->db->get_where('tbl_user', array('username'=>$username,'username!='=>$data_lama->username));
+				$data_lama = $data['pengguna'];
 				
+				if ($username != $data_lama['username']) {
+					$cek_username = array_search($username, array_column($user_list, 'username', 'id'));
+				}
+
 				$pesan  = '';
 				$simpan = 'y';
-
-				if ($cek_data->num_rows()!=0) {
+				
+				if ($cek_username != null) {
 					$simpan = 'n';
 					$pesan  = "Username '<b>$username</b>' sudah ada";
 				} else {
-					$pass_lama = $data_lama->password;
+					$pass_lama = $data_lama['password'];
 					if ($password=='') {
 						$password = $pass_lama;
 					} else {
@@ -151,17 +155,18 @@ class Datapengguna extends CI_Controller {
 							$pesan  = "Password tidak cocok!";
 						}
 					}
+					
 				}
 
 				if ($simpan=='y') {
 					$data = array(
-						'nama_lengkap' => $nama,
-						'username' 		 => $username,
-						'password' 		 => $password,
-						'level'			=> $level,
-						'divisi'			=> $divisi
+						'nama'			=> $nama,
+						'whatsapp'		=> $whatsapp,
+						'username' 		=> $username,
+						'password' 		=> $password,
+						'role' 			=> $role
 					);
-					$this->db->update('tbl_user',$data, array('id_user'=>$id));
+					$this->Guzzle_model->updateUser($id, $data);
 
 					$this->session->set_flashdata('msg',
 						'

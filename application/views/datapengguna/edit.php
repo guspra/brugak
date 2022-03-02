@@ -31,49 +31,44 @@ $link4 = strtolower($this->uri->segment(4));
                   <div class="form-group">
                     <label class="control-label col-lg-3">Nama Pengguna</label>
                     <div class="col-lg-9">
-                      <input type="text" name="nama" class="form-control" value="<?php echo $query->nama_lengkap; ?>" placeholder="Nama" required autofocus onfocus="this.value = this.value;">
+                      <input type="text" name="nama" class="form-control" value="<?php echo $pengguna['nama']; ?>" placeholder="Nama" required autofocus onfocus="this.value = this.value;">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-lg-3">Divisi</label>
+                    <label class="control-label col-lg-3">Whatsapp</label>
                     <div class="col-lg-9">
-                      <select class="form-control default-select2" name="divisi" required>
-                        <option value="">- Pilih -</option>
-                        <option value="admin" <?php if($query->divisi == 'admin'){ echo "selected";} ?>>Administrasi</option>
-                        <option value="yankumham" <?php if($query->divisi == 'yankumham'){ echo "selected";} ?>>Pelayanan Hukum dan HAM</option>
-                        <option value="pas" <?php if($query->divisi == 'pas'){ echo "selected";} ?>>Pemasyarakatan</option>
-                        <option value="imi" <?php if($query->divisi == 'imi'){ echo "selected";} ?>>Keimigrasian</option>
-                      </select>
+                      <input type="text" name="whatsapp" class="form-control" value="<?php echo $pengguna['whatsapp']; ?>" placeholder="Whatsapp" required autofocus onfocus="this.value = this.value;">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-lg-3">Level</label>
+                    <label class="control-label col-lg-3">Role</label>
                     <div class="col-lg-9">
-                      <select class="form-control default-select2" name="level" selected="<?php echo $query->level; ?>" required>
+                      <select class="form-control default-select2" name="role" required>
                         <option value="">- Pilih -</option>
-                        <option value="humas" <?php if($query->level=='humas') echo 'selected="selected"'; ?>>Humas</option>
-                        <option value="pelaksana" <?php if($query->level=='pelaksana') echo 'selected="selected"'; ?>>Pelaksana Kegiatan</option>
-                        <option value="pimpinan" <?php if($query->level=='pimpinan') echo 'selected="selected"'; ?>>Pimpinan</option>
+                        <option value="kadivmin" <?php if($pengguna['role'] == 'kadivmin'){ echo "selected";} ?>>Kepala Divisi Administrasi</option>
+                        <option value="pengawas" <?php if($pengguna['role'] == 'pengawas'){ echo "selected";} ?>>Pengawas</option>
+                        <option value="penanggungjawab" <?php if($pengguna['role'] == 'penanggungjawab'){ echo "selected";} ?>>Penanggung Jawab</option>
+                        <option value="MR.CLEAN" <?php if($pengguna['role'] == 'MR.CLEAN'){ echo "selected";} ?>>Mr. Clean</option>
                       </select>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="control-label col-lg-3">Username</label>
                     <div class="col-lg-9">
-                      <input type="text" name="username" class="form-control" value="<?php echo $query->username; ?>" placeholder="Username" required>
+                      <input type="text" name="username" class="form-control" value="<?php echo $pengguna['username']; ?>" placeholder="Username" required>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="control-label col-lg-3">Password</label>
                     <div class="col-lg-9">
-                      <input type="password" name="password" class="form-control" value="<?php echo $query->password; ?>" placeholder="Password" required>
+                      <input type="password" name="password" class="form-control" value="<?php echo $pengguna['password']; ?>" placeholder="Password" required>
 					  <i style="color: red;">*Password tidak boleh kosong.</i>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="control-label col-lg-3">Re-Password</label>
                     <div class="col-lg-9">
-                      <input type="password" name="password2" class="form-control" value="<?php echo $query->password; ?>" placeholder="Konfirmasi Password" required>
+                      <input type="password" name="password2" class="form-control" value="<?php echo $pengguna['password']; ?>" placeholder="Konfirmasi Password" required>
                     </div>
                   </div>
                   <hr>

@@ -55,7 +55,6 @@ class Guzzle_model extends CI_model {
 
     public function updateUser($id, $data)
     {
-        // var_dump($data); exit;
         $response = $this->_client->request('PUT', 'User/update/' . $id, [
             'json' => $data
         ]);
