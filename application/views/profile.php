@@ -4,9 +4,8 @@ $level   = $this->session->userdata('level');
 $nama	= $this->session->userdata('nama');
 $id_dipa	= $this->session->userdata('id_dipa');
 
-$foto_profile = "img/user/user-default.jpg";
+$foto_profile = "img/user/user-default.png";
 if ($level=='obh') {
-	$d_k = $this->db->get_where('tbl_data_obh', array('id_user'=>$user->id_user))->row();
 	$foto_k = $d_k->foto_obh;
 	if ($foto_k!='') {
 		if(file_exists("$foto_k")){
@@ -44,25 +43,52 @@ if ($level=='obh') {
               ?>
               <form class="form-horizontal" action="" method="post" data-parsley-validate="true" enctype="multipart/form-data">
                   <div class="form-group">
-                    <label class="control-label col-lg-3">Username</label>
-                    <div class="col-lg-9">
-                      <input type="text" name="username" class="form-control" value="<?php echo strtolower($username); ?>" placeholder="Nama Pengguna" readonly>
-                    </div>
-                  </div>
-                  <div class="form-group">
                     <label class="control-label col-lg-3">Nama</label>
                     <div class="col-lg-9">
-                      <input type="text" name="nama_lengkap" class="form-control" value="<?php echo ucwords($nama); ?>" placeholder="Nama Lengkap" maxlength="100" readonly>
+                      <input type="text" name="nama" class="form-control" value="<?php echo ucwords($user['nama']); ?>" placeholder="Nama" maxlength="100">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-lg-3">Level</label>
+                    <label class="control-label col-lg-3">Whatsapp</label>
                     <div class="col-lg-9">
-                      <input type="text" name="" class="form-control" value="<?php echo strtoupper($level); ?>" placeholder="Level User" readonly>
+                      <input type="text" name="whatsapp" class="form-control" value="<?php 
+                        if($level == 'superadmin') { 
+                          echo '-'; 
+                        } else { 
+                          echo $user['whatsapp'];
+                        } ?>" placeholder="Whatsapp" maxlength="100">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-lg-3">Role</label>
+                    <div class="col-lg-9">
+                      <input type="text" name="role" class="form-control" value="<?php echo ucwords($user['role']); ?>" placeholder="Role" maxlength="100" readonly>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-lg-3">Username</label>
+                    <div class="col-lg-9">
+                      <input type="text" name="username" class="form-control" value="<?php echo strtolower($user['username']); ?>" placeholder="Nama Pengguna">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-lg-3">Password</label>
+                    <div class="col-lg-9">
+                      <input type="password" name="password" class="form-control" value="<?php echo $user['password']; ?>" placeholder="Password" required>
+					            <i style="color: red;">*Password tidak boleh kosong.</i>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-lg-3">Re-Password</label>
+                    <div class="col-lg-9">
+                      <input type="password" name="password2" class="form-control" value="<?php echo $user['password']; ?>" placeholder="Konfirmasi Password" required>
                     </div>
                   </div>
                 
                 <hr>
+
+                <a href="ubah_pass" class="btn btn-info">Ubah Password</a>
+                <button type="submit" name="btnupdate" class="btn btn-primary" style="float:right;">Simpan</button>
                 
             </fieldset>
 
