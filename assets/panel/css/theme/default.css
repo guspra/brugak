@@ -29,7 +29,7 @@ Website: http://www.seantheme.com/color-admin-v3.0/admin/apple/
 .text-theme,
 .navbar-logo,
 .sidebar .sub-menu > li.active > a:before {
-  color: #007bff;
+  color: #fff;
 }
 
 /* Added in v1.5 */

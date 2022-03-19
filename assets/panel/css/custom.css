@@ -19,193 +19,118 @@
   display: none;
 }
 
-/* Dashboard */
-.dashboard .row {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
+/* Main Menu */
+.header-mobile {
+  display: none;
 }
-.dashboard .row > [class*="col-"] {
-  display: flex;
-  flex-direction: column;
-}
-
-.realisasi-card {
-  background-color: #2d353c;
-  padding: 10px;
-}
-
-.penyerapan-chart img {
-  position: absolute;
-  bottom: 0;
-  right: 10px;
-}
-
-.progress-title,
-.dashboard-all .panel-heading {
-  color: #adb5bd;
-}
-.progress-angka {
-  font-size: 153%;
-  margin-bottom: 6px;
-}
-.dashboard-progress .progress {
-  height: 10px;
-}
-.dashboard-progress .progress-bar-success {
-  background-color: #00acac;
-}
-.dashboard-progress .progress-bar-danger {
-  background-color: #ea4272;
-}
-.dashboard-progress .progress-bar-bp {
-  background-color: #ffd11c;
-}
-.dashboard-progress .progress-bar-bb {
-  background-color: #8753de;
-}
-.dashboard-progress .progress-bar-bm {
-  background-color: #9f7159;
-}
-
-.nav-pills.chart-deviasi-btn > li {
-  float: none;
-  width: fit-content;
+.btn-icon {
+  background-color: rgb(14, 12, 40);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  padding: 6px;
   display: inline-block;
+  font-size: 27px;
+  line-height: 45px;
+  color: white;
+  text-align: center;
+  vertical-align: bottom;
 }
 
-/* Dipa Collapse Accordion */
-.dipa-collapse .mb-0 {
-  margin: 0 !important;
-}
-.dipa-collapse .card-header {
-  padding: 0 !important;
-}
-.dipa-accordion-btn {
-  width: 100%;
-  background: #20252a;
-  text-align: left;
-  padding: 13px;
-  border-radius: 3px 3px 0px 0px;
-}
-.dipa-accordion-btn.collapsed {
-  border-radius: 3px !important;
-}
-.dipa-accordion-btn a,
-.dipa-accordion-btn.btn-link {
-  color: #fff;
-}
-.dipa-accordion-btn.btn-link:hover,
-.dipa-accordion-btn.btn-link:focus,
-.dipa-accordion-btn.btn-link:active {
-  background: #20252a;
-  text-transform: none !important;
-}
-.dipa-accordion-btn .caret {
-  position: absolute;
-  right: 20px;
-}
-.dipa-accordion-btn .caret::before {
-  font-weight: 900;
-}
-.dipa-collapse .card-body {
-  padding: 20px;
-  border: 1px solid lightgrey;
-  border-top: 0px;
-  border-radius: 0px 0px 4px 4px;
-}
-.dipa-collapse.invisible {
-  display: none !important;
+.btn-text {
+  color: #3d405c;
+  font-size: 14px;
+  padding: 8px;
+  line-height: 15px;
 }
 
-/* Dashboard collapse */
-.dashboard-all .dipa-accordion-btn,
-.dashboard-all .dipa-accordion-btn.btn-link:hover,
-.dashboard-all .dipa-accordion-btn.btn-link:focus,
-.dashboard-all .dipa-accordion-btn.btn-link:active {
-  background-color: #2d353c;
-}
-.dashboard-all .panel-collapse > .panel-body {
-  padding: 0;
-  border-top: 0 !important;
-}
-.dashboard-all .realisasi-card.card {
-  border-radius: 0 0 4px 4px;
+a:focus,
+a:hover {
+  text-decoration: none !important;
 }
 
-/* Pelaksanaan Anggaran */
-.verifikasi-icon i {
-  font-size: 18px;
-}
-.col-9 .radio-btn-verifikasi {
-  padding-top: 7px;
-}
-.radio-btn-verifikasi {
-  margin: 7px 10px 0 0;
-}
-.form-group.input-dinamis {
-  padding: 0 10px;
-}
-.col-input-dinamis {
-  padding: 0 5px;
-}
-.pelaksanaan-anggaran hr {
-  border-top-color: rgb(153, 153, 153);
+.icon-pengguna {
+  background-color: #88daff;
 }
 
-/* Pelaksanaan Anggaran */
-.skor-warna.label-warning {
-  color: #ff9500;
-}
-.skor-warna.label-success {
-  color: #4cd964;
-}
-.skor-warna.label-danger {
-  color: #ff3b30;
+a.btn-main-menu:hover .icon-pengguna {
+  background-color: #2ba2d9;
 }
 
-input[type="radio"] {
-  vertical-align: middle;
-  margin: -1px 4px 0 0;
+.icon-checklist {
+  background-color: #88ecc8;
 }
 
-.add-new {
-  margin-bottom: 15px;
+a.btn-main-menu:hover .icon-checklist {
+  background-color: #2cc58e;
 }
 
-.radio-text {
-  margin-right: 15px !important;
+.icon-file {
+  background-color: #ffd785;
 }
 
-.grey-line {
-  border-color: #bbb;
-  margin: 10px 0;
+a.btn-main-menu:hover .icon-file {
+  background-color: #f3b535;
 }
 
-#disabled-button-wrapper {
+hr {
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
+}
+
+/* Kebersihan Ruangan */
+.room-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
   display: inline-block;
+  text-align: center;
 }
-
-#disabled-button-wrapper .btn[disabled] {
-  pointer-events: none;
+.room-icon.icon-green {
+  background-color: #8decca;
 }
-
-.progress-jenis-belanja .progress {
-  height: 7px;
+.room-icon.icon-yellow {
+  background-color: #ffd785;
 }
+.room-icon.icon-red {
+  background-color: #e387b2;
+}
+.room-text {
+  font-size: 13px;
+}
+a .room-text {
+  color: #3d405c !important;
+}
+/* .panel-status-ruangan {
+  border-color: #bce8f1;
+}
+.panel-status-ruangan > .panel-heading {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+} */
 
-.progress-bar-striped {
-  background-image: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.15) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.15) 50%,
-    rgba(255, 255, 255, 0.15) 75%,
-    transparent 75%,
-    transparent
-  );
-  background-size: 1rem 1rem;
+@media (max-width: 576px) {
+  /* Header */
+  .header-mobile {
+    display: block;
+  }
+  .container-fluid {
+    padding: 8px 8px 80px 8px;
+  }
+  .navbar-nav > li > a {
+    padding: 15px 10px;
+  }
+  .navbar-brand {
+    padding: 12px 10px;
+  }
+  .page-header-fixed {
+    padding-top: 80px;
+  }
+  .navbar.navbar-default {
+    z-index: -1;
+  }
+  .content {
+    padding-top: 0;
+  }
 }

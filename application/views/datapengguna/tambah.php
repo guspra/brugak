@@ -5,9 +5,9 @@ $link3 = strtolower($this->uri->segment(3));
 $link4 = strtolower($this->uri->segment(4));
 ?>
 <!-- Main content -->
-<div class="content-wrapper">
+<!-- <div class="content-wrapper"> -->
   <!-- Content area -->
-  <div class="content">
+  <!-- <div class="content"> -->
 
     <!-- Dashboard content -->
     <div class="row">

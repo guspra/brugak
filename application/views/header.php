@@ -89,29 +89,18 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 			<!-- begin container-fluid -->
 			<div class="container-fluid">
 				<!-- begin mobile sidebar expand / collapse button -->
-				<div class="navbar-header">
-					<a href="" class="navbar-brand"><span class="navbar-logo"><center><b>BRUGAK</b></center></a>
-					<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				</div>
+				<!-- <div class="navbar-header">
+					
+				</div> -->
 				<!-- end mobile sidebar expand / collapse button -->
 
 				<!-- begin header navigation right -->
+				<a href="" class="navbar-brand"><span class="navbar-logo"><center><b>BRUGAK</b></center></a>
 				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					</li>
 					<li class="dropdown">
 						<a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle icon" aria-expanded="false">
 							<i class="ion-ios-bell"></i>
-							<span class="label" id="jml_notif_bell"><span class="badge badge-danger pull-right">0</span>
+							<span class="label" id="jml_notif_bell">0</span>
 						</a>
 						<ul class="dropdown-menu media-list pull-right animated fadeInDown" id="notif_bell"></ul>
 					</li>
@@ -149,7 +138,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 						</div>
 						<div class="info col-md-8">
 							<?php echo ucwords($nama); ?>
-							<!-- <small><?php //echo ucwords($dipa_name); ?></small> -->
+							<small><?php echo ucwords($level); ?></small>
 						</div>
 					</li>
 				</ul>
@@ -171,25 +160,36 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 							</a>
 						</li>
 					<?php endif; ?>
-					<li class="has-sub <?php if($menu=='laporan_harian' OR $menu=='laporan_bulanan'){echo " active";} ?>">
+					<li class="has-sub<?php if($menu=='laporan_harian'){echo " class='active'";} ?>">
+						<a href="datapengguna/v.html">
+							<i class="fa fa-calendar-check-o"></i> <span>Checklist Kebersihan</span>
+						</a>
+					</li>
+					<li class="has-sub<?php if($menu=='laporan_bulanan'){echo " class='active'";} ?>">
+						<a href="datapengguna/v.html">
+							<i class="fa fa-file-text"></i> <span>Laporan Bulanan</span>
+						</a>
+					</li>
+						
+					<!-- <li class="has-sub <?php //if($menu=='laporan_harian' OR $menu=='laporan_bulanan'){echo " active";} ?>">
 						<a href="javascript:;">
 							<b class="caret pull-right"></b>
 							<i class="fa fa-check-square bg-gray"></i>
 							<span>Laporan Kebersihan</span>
 						</a>
 						<ul class="sub-menu">
-							<li <?php if($menu=='laporan_harian'){echo " class='active'";} ?>>
+							<li <?php //if($menu=='laporan_harian'){echo " class='active'";} ?>>
 								<a href="dipa/v.html">
-									<i class="fa fa-file-text"></i> <span>Laporan Harian</span>
+									<i class="fa fa-file-text"></i> <span>Checklist Kebersihan</span>
 								</a>
 							</li>
-							<li <?php if($menu=='laporan_bulanan'){echo " class='active'";} ?>>
+							<li <?php //if($menu=='laporan_bulanan'){echo " class='active'";} ?>>
 								<a href="rpd">
 									<i class="fa fa-calendar-check-o"></i> <span>Laporan Bulanan</span>
 								</a>
 							</li>
 						</ul>
-					</li>
+					</li> -->
 				<!-- </ul> -->
 
 					<li class="nav-header"></li>
@@ -211,3 +211,45 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 		</div>
 		<div class="sidebar-bg"></div>
 		<!-- end #sidebar -->
+
+		<div id="content" class="content dashboard">
+		<!-- Header mobile -->
+		<div class="header-mobile">
+			<div class="card border-0 p-20 shadow overflow-hidden bg-gray-800 text-white">
+				<div class="card-body">
+					<div class="row text-center">
+						<div class="col-md-4 col-sm-4 col-xs-4 main-menu">
+							<a href="datapengguna/v.html" class="btn-main-menu">
+								<div class="btn-icon icon-pengguna">
+									<i class="fa fa-users"></i>
+								</div>
+								<div class="btn-text">
+									<span>Data Pengguna</span>
+								</div>
+							</a>
+						</div>
+						<div class="col-md-4 col-sm-4 col-xs-4 main-menu">
+							<a href="datapengguna/v.html" class="btn-main-menu">
+								<div class="btn-icon icon-checklist">
+									<i class="fa fa-check-square"></i>
+								</div>
+								<div class="btn-text">
+									<span>Checklist Kebersihan</span>
+								</div>
+							</a>
+						</div>
+						<div class="col-md-4 col-sm-4 col-xs-4 main-menu">
+							<a href="datapengguna/v.html" class="btn-main-menu">
+								<div class="btn-icon icon-file">
+									<i class="fa fa-file-text"></i>
+								</div>
+								<div class="btn-text">
+									<span>Laporan Bulanan</span>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Header mobile -->

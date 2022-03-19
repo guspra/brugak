@@ -217,7 +217,7 @@ label {
   box-shadow: 0 1px rgba(0, 0, 0, 0.05);
 }
 .navbar.navbar-default {
-  background: #fff;
+  background: #a09ef1;
 }
 .navbar.navbar-inverse {
   background: #000;
@@ -327,7 +327,7 @@ label {
   background: #0f018b;
 }
 .navbar-default .navbar-nav > li > a {
-  color: #333;
+  color: #fff;
 }
 .navbar-nav > li > a:focus,
 .navbar-nav > li > a:hover {
@@ -833,7 +833,7 @@ label {
   padding: 0;
 }
 .content.content-full-width .page-header {
-  margin: 20px;
+  margin: 15px;
 }
 .content.content-inverse-mode .breadcrumb a,
 .content.content-inverse-mode .page-header,
@@ -855,8 +855,8 @@ label {
   z-index: 20;
 }
 .page-header {
-  font-size: 24px;
-  margin: 0 0 20px;
+  font-size: 20px;
+  margin: 0 0 10px;
   padding: 0;
   border: none;
 }
@@ -1826,7 +1826,7 @@ legend {
   background: #f1f1f1;
 }
 .panel-inverse > .panel-heading {
-  background: #111;
+  background: #0e0c28;
 }
 .panel-success > .panel-heading {
   background: #39a34b;
@@ -2261,7 +2261,7 @@ code {
   margin: 0 -10px;
 }
 .row > [class*="col-"] {
-  padding: 0 10px;
+  padding: 0 10px 10px;
 }
 .row.row-space-0 {
   margin: 0;

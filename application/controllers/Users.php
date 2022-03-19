@@ -11,6 +11,82 @@ class Users extends CI_Controller {
 			redirect('web/login');
 		}else{
 			$data['judul_web'] = "Dashboard";
+			$data['waktu'] = array('PAGI', 'SIANG', 'SORE');			
+
+			$ruangan = $this->Guzzle_model->getAllRuangan();
+
+			foreach ($data['waktu'] as $key_waktu) {
+				$status_by_waktu = $this->Guzzle_model->getStatusRuanganByWaktu($key_waktu);
+
+				foreach ($ruangan as $key => $value) {
+					for($i=0; $i < count($status_by_waktu); $i++) {
+						if ($value['id'] == $status_by_waktu[$i]['id_ruangan']) {
+							$data['status'][$key_waktu][$key] = array(
+								'id_ruangan'		=> $value['id'],
+								'nama_ruangan' 		=> $value['nama'],
+								'id_status_ruangan'	=> $status_by_waktu[$i]['id_status_ruangan'],
+								'status_ob'			=> $status_by_waktu[$i]['status_ob'],
+								'status_pengawas'	=> $status_by_waktu[$i]['status_pengawas']
+							);
+						}
+					}
+					if ($data['status'][$key_waktu][$key] == null) {
+						$data['status'][$key_waktu][$key] = array(
+							'id_ruangan'		=> $value['id'],
+							'nama_ruangan' 		=> $value['nama'],
+							'status_ob'			=> 'BELUM',
+							'status_pengawas'	=> 'BELUM'
+						);	
+					}
+				}
+
+			}
+
+			// echo '<pre>'; print_r($data['status']); echo '</pre>'; exit;
+
+			// foreach ($ruangan as $key => $value) {
+			// 	for($i=0; $i < count($status_siang); $i++) {
+			// 		if ($value['id'] == $status_siang[$i]['id_ruangan']) {
+			// 			$data['status_pagi'][$key] = array(
+			// 				'id_ruangan'		=> $value['id'],
+			// 				'nama_ruangan' 		=> $value['nama'],
+			// 				'status_ob'			=> $status_siang[$i]['status_ob'],
+			// 				'status_pengawas'	=> $status_siang[$i]['status_pengawas']
+			// 			);
+			// 		}
+			// 	}
+			// 	if ($data['status_siang'][$key] == null) {
+			// 		$data['status_siang'][$key] = array(
+			// 			'id_ruangan'		=> $value['id'],
+			// 			'nama_ruangan' 		=> $value['nama'],
+			// 			'status_ob'			=> 'BELUM',
+			// 			'status_pengawas'	=> 'BELUM'
+			// 		);	
+			// 	}
+			// }
+
+			// foreach ($ruangan as $key => $value) {
+			// 	for($i=0; $i < count($status_sore); $i++) {
+			// 		if ($value['id'] == $status_sore[$i]['id_ruangan']) {
+			// 			$data['status_pagi'][$key] = array(
+			// 				'id_ruangan'		=> $value['id'],
+			// 				'nama_ruangan' 		=> $value['nama'],
+			// 				'status_ob'			=> $status_sore[$i]['status_ob'],
+			// 				'status_pengawas'	=> $status_sore[$i]['status_pengawas']
+			// 			);
+			// 		}
+			// 	}
+			// 	if ($data['status_sore'][$key] == null) {
+			// 		$data['status_sore'][$key] = array(
+			// 			'id_ruangan'		=> $value['id'],
+			// 			'nama_ruangan' 		=> $value['nama'],
+			// 			'status_ob'			=> 'BELUM',
+			// 			'status_pengawas'	=> 'BELUM'
+			// 		);	
+			// 	}
+			// }
+
+			
 			
 			$this->load->view('header', $data);
 			$this->load->view('dashboard', $data);

@@ -15,10 +15,10 @@ if ($level=='obh') {
 }
 ?>
 <!-- Main content -->
-<div class="content-wrapper">
+<!-- <div class="content-wrapper"> -->
 
   <!-- Content area -->
-  <div class="content">
+  <!-- <div class="content"> -->
 
     <!-- Dashboard content -->
     <div class="row">
@@ -87,7 +87,7 @@ if ($level=='obh') {
                 
                 <hr>
 
-                <a href="ubah_pass" class="btn btn-info">Ubah Password</a>
+                <!-- <a href="ubah_pass" class="btn btn-info">Ubah Password</a> -->
                 <button type="submit" name="btnupdate" class="btn btn-primary" style="float:right;">Simpan</button>
                 
             </fieldset>

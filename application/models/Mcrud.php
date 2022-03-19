@@ -46,12 +46,6 @@ class Mcrud extends CI_Model {
 		return $dayList[$day];
 	}
 
-	public function get_user_name_by_id($id)
-	{
-		$user = $this->Guzzle_model->getUserById($id);
-		return $user['nama'];
-	}
-
 	public function waktu($data, $aksi='')
 	{
 		if ($aksi=='full') {
@@ -62,6 +56,29 @@ class Mcrud extends CI_Model {
 		$hari = $this->Mcrud->hari_id($tgl_n);
 		$tgl  = $this->Mcrud->tgl_id($tgl_n,$aksi);
 		return $hari.", ".$tgl;
+	}
+
+	public function get_user_name_by_id($id)
+	{
+		$user = $this->Guzzle_model->getUserById($id);
+		return $user['nama'];
+	}
+
+	public function get_pengawas_name_by_id($id)
+	{
+		if ($id == 0) {
+			$nama = "-";
+		} else {
+			$user = $this->Guzzle_model->getUserById($id);
+			$nama = $user['nama'];
+		}
+		return $nama;
+	}
+
+	public function get_nama_ruangan($id)
+	{
+		$ruangan = $this->Guzzle_model->getRuanganById($id);
+		return $ruangan['nama'];
 	}
 
 	function judul_web($id='')
@@ -171,21 +188,19 @@ class Mcrud extends CI_Model {
 		 return $persen;
 	}
 
-	public function status_verifikasi($status) {
-		if($status == 'sudah') { 
-            echo '<label class="label label-success">SUDAH DIVERIFIKASI</label>';
-        } elseif($status == 'tolak') {
-            echo '<label class="label label-danger">PERLU PERBAIKAN</label>';
-        } else {
-            echo '<label class="label label-default">BELUM DIVERIFIKASI</label>';
-        }
+	public function status_ob($status) {
+		if($status == 'SUDAH') { 
+            echo '<label class="label label-success">SUDAH DIBERSIHKAN</label>';
+        } elseif($status == 'BELUM') {
+            echo '<label class="label label-danger">BELUM DIBERSIHKAN</label>';
+        } 
 	}
 
-	public function status_verifikasi_revisi_dipa($status) {
-		if($status == 'sudah') { 
-            echo '<label class="label label-success">SELESAI</label>';
-        } elseif($status == 'belum') {
-            echo '<label class="label label-warning">DALAM PROSES</label>';
+	public function status_pengawas($status) {
+		if($status == 'SUDAH') { 
+            echo '<label class="label label-success">SUDAH DIBERSIHKAN</label>';
+        } elseif($status == 'BELUM') {
+            echo '<label class="label label-warning">BELUM DIPERIKSA</label>';
         }
 	}
 

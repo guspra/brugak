@@ -5,7 +5,7 @@ $link3 = strtolower($this->uri->segment(3));
 $link4 = strtolower($this->uri->segment(4));
 ?>
 <!-- begin #content -->
-		<div id="content" class="content">
+		<!-- <div id="content" class="content"> -->
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
 				<li><a href="dashboard.html">Dashboard</a></li>
