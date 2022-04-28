@@ -109,6 +109,9 @@ a .room-text {
   background-color: #d9edf7;
   border-color: #bce8f1;
 } */
+.verif-checkbox {
+  padding-top: 5px;
+}
 
 @media (max-width: 576px) {
   /* Header */

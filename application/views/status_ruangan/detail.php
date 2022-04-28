@@ -23,7 +23,14 @@
                 $level 	= $this->session->userdata('level');
                 $id_user = $this->session->userdata('id_user');
                 $link3 = $this->uri->segment(3);
+
+                if ($status_ruangan == 'belum'):
                 ?>
+
+                <center>-- Ruangan belum dibersihkan --</center>
+
+                <?php else: ?>
+              
 
               <div class="table-responsive">
 			          <table class="table table-bordered table-striped" width="100%">
@@ -87,6 +94,8 @@
 
               <hr style="margin-top:0px;">
               <a href="<?php echo strtolower($this->uri->segment(1)); ?>/<?php echo strtolower($this->uri->segment(2)); ?>/<?php echo strtolower($this->uri->segment(3)); ?>.html" class="btn btn-default"><< Kembali</a>
+
+              <?php endif; ?>
               
             </div>
 

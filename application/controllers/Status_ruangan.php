@@ -38,11 +38,11 @@ class Status_ruangan extends CI_Controller {
 			$data['judul_web'] 	  = "Status Kebersihan Ruangan";
 			$data['status_ruangan'] = $this->Guzzle_model->getStatusRuanganById($id);
 
-			// echo '<pre>'; print_r($data['status_ruangan']); exit;
-
+			
 			if ($data['status_ruangan'] == null) {
-				redirect(404);
+				$data['status_ruangan'] = 'belum';
 			}
+			// echo '<pre>'; print_r($data['status_ruangan']); exit;
 
 			// $cek_notif = $this->Guzzle_model->getNotifikasiByIdPenerima($id_user);
 
@@ -155,54 +155,29 @@ class Status_ruangan extends CI_Controller {
 		}
 
 		if (isset($_POST['btnupdate'])) {
-			$jenis_revisi = htmlentities(strip_tags($this->input->post('jenis_revisi')));
-			$keterangan = htmlentities(strip_tags($this->input->post('keterangan')));
-			$id_verifikator = htmlentities(strip_tags($this->input->post('id_verifikator')));
-			$id_dipa = htmlentities(strip_tags($this->input->post('id_dipa')));
-			$cek_file = $data['status_ruangan']['url_file'];
-			if ($_FILES['url_file']['error'] <> 4) {
-				if ( ! $this->upload->do_upload('url_file'))
-				{
-						$simpan = 'n';
-						$pesan  = htmlentities(strip_tags($this->upload->display_errors('<p>', '</p>')));
-				}
-				 else
-				{
-					if ($cek_file!='') {
-						unlink($cek_file);
-					}
-							$gbr = $this->upload->data();
-							$filename = "$lokasi/".$gbr['file_name'];
-							$file = preg_replace('/ /', '_', $filename);
-							$simpan = 'y';
-				}
-			}else {
-				$file = $cek_file;
+			$status_pengawas = htmlentities(strip_tags($this->input->post('status_pengawas')));
+			$catatan_pengawas = htmlentities(strip_tags($this->input->post('catatan_pengawas')));
+			
+			$data_lama = $data['status_ruangan'];
+
+			$pesan = '';
+
+			if ($level == "PENGAWAS" && $status_pengawas == "on") {
 				$simpan = 'y';
 			}
 
 			if ($simpan=='y') {
 				$data = array(
-					'url_file'						=> $file,
-					'id_dipa'						=> $id_dipa,
-					'keterangan' 					=> $keterangan,
-					'jenis_revisi'					=> $jenis_revisi,
-					'id_user_verifikator_terakhir'	=> $id_verifikator
+					'id_ruangan'		=> $data_lama['id_ruangan'],
+					'id_ob' 			=> $data_lama['id_ob'],
+					'id_pengawas'		=> $id_user,
+					'status_ob'			=> $data_lama['status_ob'],
+					'status_pengawas'	=> "SUDAH",
+					'waktu'				=> $data_lama['waktu'],
+					'tanggal'			=> $today,
+					'catatan_pengawas'	=> $catatan_pengawas
 				);
-				$status_ruangan_result = $this->Guzzle_model->updateRevisiDipa($id, $data);
-
-				if ($status_ruangan_result['status'] == 200) {
-					$verifikator = $this->Guzzle_model->getVerifikasiByUsulanRevisiId($id);
-
-					$verifikator_filter = array_filter($verifikator, function($key) {
-						return ($key['status_verifikasi'] != 'sudah');
-					});
-					
-					foreach ($verifikator_filter as $key => $value) {
-						$id_verifikator = $value['id_user_verifikator'];
-						$this->Mcrud->kirim_notif('revisi_usulan_status_ruangan', $id_dipa, $id, $id_user, $id_verifikator);
-					}
-				}
+				$this->Guzzle_model->updateStatusRuangan($id, $data);
 				
 				$this->session->set_flashdata('msg',
 					'
@@ -214,7 +189,7 @@ class Status_ruangan extends CI_Controller {
 					</div>
 				 <br>'
 				);
-				redirect('status_ruangan/v/'.$id_dipa);
+				redirect('dashboard');
 				
 			 }else {
 					 $this->session->set_flashdata('msg',
@@ -227,92 +202,9 @@ class Status_ruangan extends CI_Controller {
 						 </div>
 					  <br>'
 					 );
-					redirect("status_ruangan/v/$id_dipa/$aksi/".hashids_encrypt($id));
+					redirect('status_ruangan/v/e/'.hashids_encrypt($id));
 			 }
 
-		}
-
-		if (isset($_POST['btnkonfirm'])) {
-			$status_verifikasi 		= htmlentities(strip_tags($this->input->post('status_verifikasi')));
-			$id_user_verifikator 	= htmlentities(strip_tags($this->input->post('id_user_verifikator')));
-			$id_usulan_status_ruangan  = htmlentities(strip_tags($this->input->post('id_usulan_status_ruangan')));
-			$komentar  = htmlentities(strip_tags($this->input->post('catatan')));
-			$id_verifikasi_usulan = htmlentities(strip_tags($this->input->post('id_verifikasi_usulan')));
-			
-			$simpan = 'y';
-			$id_user_verifikator_terakhir = $data['status_ruangan']['id_user_verifikator_terakhir'];
-
-			if ($simpan=='y') {
-				if ($status_verifikasi == 'tolak') {
-					$data = array(
-						'status_verifikasi'			=> $status_verifikasi,
-						'id_user_verifikator' 		=> $id_user,
-						'id_usulan_status_ruangan'		=> $id_usulan_status_ruangan,
-						'komentar'					=> $komentar
-					);
-					$verifikasi_result = $this->Guzzle_model->updateVerifikasiRevisiDipa($id_verifikasi_usulan, $data);
-				} elseif ($status_verifikasi == 'sudah') {
-					$data1 = array(
-						'status_verifikasi'			=> $status_verifikasi,
-						'id_user_verifikator' 		=> $id_user,
-						'id_usulan_status_ruangan'		=> $id_usulan_status_ruangan,
-						'komentar'					=> $komentar
-					);
-					$verifikasi_result = $this->Guzzle_model->updateVerifikasiRevisiDipa($id_verifikasi_usulan, $data1);
-
-					if ($id_user != $id_user_verifikator_terakhir) {
-						$data2 = array(
-							'status_verifikasi'			=> 'belum',
-							'id_user_verifikator' 		=> $id_user_verifikator,
-							'id_usulan_status_ruangan'		=> $id_usulan_status_ruangan,
-							'komentar'					=> ""
-						);
-						$new_verifikator = $this->Guzzle_model->createVerifikasiRevisiDipa($data2);
-					}
-				}
-				
-				if ($verifikasi_result['status'] == 200) {
-					$user_dipa = $this->Guzzle_model->getUserByDipaId($id_dipa);
-					
-					$pelaksana = array_filter($user_dipa, function($key) {
-						return ($key['role'] == 'pelaksana');
-					});
-					
-					foreach ($pelaksana as $key => $value) {
-						$id_pelaksana = $value['id'];
-					}
-					
-					$this->Mcrud->kirim_notif('verifikasi_usulan_status_ruangan', $id_dipa, $id_usulan_status_ruangan, $id_user, $id_pelaksana, $status_verifikasi);
-				}
-
-				if ($new_verifikator['status'] == 201) {
-					$this->Mcrud->kirim_notif('usulan_status_ruangan', $id_dipa, $id_usulan_status_ruangan, $id_user, $id_user_verifikator);
-				}
-
-				$this->session->set_flashdata('msg',
-					'
-					<div class="alert alert-success alert-dismissible" role="alert">
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<strong>Sukses!</strong> Berhasil disimpan.
-					</div>
-				<br>'
-				);
-			}else {
-				$this->session->set_flashdata('msg',
-					'
-					<div class="alert alert-warning alert-dismissible" role="alert">
-						 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							 <span aria-hidden="true">&times;</span>
-						 </button>
-						 <strong>Gagal!</strong> '.$pesan.'.
-					</div>
-				 <br>'
-				);
-			  redirect("status_ruangan/v/$id_dipa/$aksi");
-			}
-			redirect('status_ruangan/v/'.$id_dipa);
 		}
 			
 	}

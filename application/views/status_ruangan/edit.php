@@ -29,46 +29,15 @@ $link4 = strtolower($this->uri->segment(4));
                 ?>
                 <form class="form-horizontal" action="" data-parsley-validate="true" method="post" enctype="multipart/form-data">
                   <div class="form-group">
-                    <label class="control-label col-lg-3">Nama Pengguna</label>
-                    <div class="col-lg-9">
-                      <input type="text" name="nama" class="form-control" value="<?php echo $pengguna['nama']; ?>" placeholder="Nama" required autofocus onfocus="this.value = this.value;">
+                    <label class="control-label col-lg-3">Verifikasi</label>
+                    <div class="verif-checkbox col-lg-9">
+                      <input type="checkbox" name="status_pengawas" required>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-lg-3">Whatsapp</label>
+                    <label class="control-label col-lg-3">Catatan Pengawas</label>
                     <div class="col-lg-9">
-                      <input type="text" name="whatsapp" class="form-control" value="<?php echo $pengguna['whatsapp']; ?>" placeholder="Whatsapp" required autofocus onfocus="this.value = this.value;">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-lg-3">Role</label>
-                    <div class="col-lg-9">
-                      <select class="form-control default-select2" name="role" required>
-                        <option value="">- Pilih -</option>
-                        <option value="kadivmin" <?php if($pengguna['role'] == 'kadivmin'){ echo "selected";} ?>>Kepala Divisi Administrasi</option>
-                        <option value="pengawas" <?php if($pengguna['role'] == 'pengawas'){ echo "selected";} ?>>Pengawas</option>
-                        <option value="penanggungjawab" <?php if($pengguna['role'] == 'penanggungjawab'){ echo "selected";} ?>>Penanggung Jawab</option>
-                        <option value="MR.CLEAN" <?php if($pengguna['role'] == 'MR.CLEAN'){ echo "selected";} ?>>Mr. Clean</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-lg-3">Username</label>
-                    <div class="col-lg-9">
-                      <input type="text" name="username" class="form-control" value="<?php echo $pengguna['username']; ?>" placeholder="Username" required>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-lg-3">Password</label>
-                    <div class="col-lg-9">
-                      <input type="password" name="password" class="form-control" value="<?php echo $pengguna['password']; ?>" placeholder="Password" required>
-					  <i style="color: red;">*Password tidak boleh kosong.</i>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-lg-3">Re-Password</label>
-                    <div class="col-lg-9">
-                      <input type="password" name="password2" class="form-control" value="<?php echo $pengguna['password']; ?>" placeholder="Konfirmasi Password" required>
+                      <textarea name="catatan_pengawas" class="form-control" placeholder="Catatan" rows="4" cols="100"></textarea>
                     </div>
                   </div>
                   <hr>

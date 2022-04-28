@@ -35,7 +35,11 @@ $level  = $this->session->userdata('level');
 										<div class="col-md-2 col-xs-4 text-center">
 											<a href="<?php
 												if ($subval['status_ob'] == 'BELUM' && $subval['status_pengawas'] == 'BELUM') {
-													echo "status_ruangan/v/t/" . hashids_encrypt($subval['id_ruangan']);
+													if ($level == 'MR.CLEAN') {
+														echo "status_ruangan/v/t/" . hashids_encrypt($subval['id_ruangan']);
+													} else {
+														echo "status_ruangan/v/d/" . hashids_encrypt($subval['id_status_ruangan']);
+													}
 												} elseif ($subval['status_ob'] == 'SUDAH' && $subval['status_pengawas'] == 'SUDAH') {
 													echo "status_ruangan/v/d/" . hashids_encrypt($subval['id_status_ruangan']);
 												} elseif ($subval['status_ob'] == 'SUDAH' && $subval['status_pengawas'] == 'BELUM') {
