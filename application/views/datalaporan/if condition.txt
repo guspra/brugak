@@ -1,0 +1,21 @@
+<?php if($id_ruangan_selected==null):?>
+<!--                                                        <option value="0" selected>Semua Ruangan</option>-->
+                                                        <option value="" selected>- Pilih -</option>
+                                                        <option value="0">Semua Ruangan</option>
+                                                    <?php else:?>
+                                                        <option value="0" selected>Semua Ruangan</option>
+                                                        <?php foreach ($ruangan_all as $item): ?>
+                                                            <?php if($item['id']==$id_ruangan_selected):?>
+                                                                <option selected value="<?php echo $item['id']; ?>" >
+                                                                    <?php echo $item['nama']; ?>
+                                                                </option>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
+                                                    <?php endif;?>
+
+
+                                                    <?php foreach ($ruangan_all as $item): ?>
+                                                        <option value="<?php echo $item['id']; ?>" >
+                                                            <?php echo $item['nama']; ?>
+                                                        </option>
+                                                    <?php endforeach; ?>

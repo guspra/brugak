@@ -3,25 +3,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Users extends CI_Controller {
 
+    public function berhasil(){
+        $this->load->view('berhasil');
+    }
 	public function index()
 	{
 		$ceks = $this->session->userdata('username');
 		$id_user = $this->session->userdata('id_user');
+//		ditambahjo
+//		kondisi ketika session userdata belum di set,maka di redirect ke controller web.php function login
 		if(!isset($ceks)) {
 			redirect('web/login');
+
+//			Kondisi Ketika session user data telah di set maka view di set ke view dashboard
 		}else{
 			$data['judul_web'] = "Dashboard";
-			$data['waktu'] = array('PAGI', 'SIANG', 'SORE');			
+			$data['jml_notif'] = "8";
+			$data['waktu'] = array('PAGI', 'SIANG', 'SORE');
 
+//			ditambahjo
+//          $ruangan didapat dari tabel ruangan
 			$ruangan = $this->Guzzle_model->getAllRuangan();
 
 			foreach ($data['waktu'] as $key_waktu) {
 				$status_by_waktu = $this->Guzzle_model->getStatusRuanganByWaktu($key_waktu);
 
+//				ditambahjo
+//              $status_by_waktu akan memberi kan return value id_ruangan,nama_ruangan,
+//              id_status_ruangan,id_ob,nama_ob,id_pengawas,nama_pengawas,waktu,status_ob,
+//              status_pengawas sesuai dengan query dari model MyModel dlm function statusRuanganByWaktu
+
+//                baris dibawah mengintervensi status 1 waktu ke seluruh ruangan dari 1 waktu itu sendiri
 				foreach ($ruangan as $key => $value) {
+//				    '$status_by_waktu' = 1 waktu shift
 					for($i=0; $i < count($status_by_waktu); $i++) {
+					    // $value['id'] = Id Ruangan yang didapat dari tabel Ruangan
+                        // $status_by_waktu[$i]['id_ruangan'] = Id Ruangan yang didapat dari tabel Status Ruangan
+                        // dimana telah di GET seluruh ruangan yg dibersihkan utk 1 shift waktu
+                        // dari semua ruangan
 						if ($value['id'] == $status_by_waktu[$i]['id_ruangan']) {
+//						    $data['status']['pagi']['no_index']
 							$data['status'][$key_waktu][$key] = array(
+//							    ditambahjo
+//							    $value['id'] = id adalah data yg didapat dari tabel 'ruangan'
 								'id_ruangan'		=> $value['id'],
 								'nama_ruangan' 		=> $value['nama'],
 								'id_status_ruangan'	=> $status_by_waktu[$i]['id_status_ruangan'],
@@ -41,6 +65,11 @@ class Users extends CI_Controller {
 				}
 
 			}
+
+//			dirubahjo ditaruh disini
+            $this->load->view('header', $data);
+            $this->load->view('dashboard', $data);
+            $this->load->view('footer');
 
 			// echo '<pre>'; print_r($data['status']); echo '</pre>'; exit;
 
@@ -88,9 +117,9 @@ class Users extends CI_Controller {
 
 			
 			
-			$this->load->view('header', $data);
-			$this->load->view('dashboard', $data);
-			$this->load->view('footer');
+//			$this->load->view('header', $data);
+//			$this->load->view('dashboard', $data);
+//			$this->load->view('footer');
 		}
 	}
 
@@ -120,6 +149,7 @@ class Users extends CI_Controller {
 			$password  = htmlentities(strip_tags($this->input->post('password')));
 			$password2 = htmlentities(strip_tags($this->input->post('password2')));
 
+//			kondisi perbandingan apakah $username(username yg diinput user) sama dengan $ceks(username sebelumnya yg tersimpan di DB)
 			if ($username != $ceks) {
 				$cek_username = array_search($username, array_column($user_list, 'username', 'id'));
 			}
@@ -164,13 +194,13 @@ class Users extends CI_Controller {
 						 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							 <span aria-hidden="true">&times;</span>
 						 </button>
-						 <strong>Sukses!</strong> Profile berhasil disimpan.
+						 <strong>Sukses!</strong> Profile berhasil disimpan bro.
 					</div>
 				  <br>'
 				);
 				redirect('profile');
 				
-			}else {
+			} else {
 				$this->session->set_flashdata('msg',
 					'
 					<div class="alert alert-warning alert-dismissible" role="alert">
@@ -186,5 +216,23 @@ class Users extends CI_Controller {
 		}
 			
 	}
+
+	public function settings(){
+//        $this->load->view('settings');
+        $ceks = $this->session->userdata('username');
+        $id_user = $this->session->userdata('id_user');
+        $level = $this->session->userdata('level');
+        if(!isset($ceks)){
+            redirect('web/login');
+        } else {
+            $data['user'] = $this->Guzzle_model->getUserById($id_user);
+            $data['level_users'] = $level;
+            $data['judul_web'] = "Settings";
+
+            $this->load->view('header',$data);
+            $this->load->view('settings',$data);
+            $this->load->view('footer');
+        }
+    }
 
 }

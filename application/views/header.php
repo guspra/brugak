@@ -16,7 +16,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 	<meta charset="utf-8" />
 	<title><?= $judul_web; ?></title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-	<meta content="<?php echo $this->Mcrud->judul_web(); ?>" name="description" />
+	<meta content="<?php echo $this->Mcrud->judul_web(); ?> " name="description" />
 	<meta content="CV. Esotechno" name="author" />
 	<meta name="keywords" content="CV. Esotechno, <?php echo $this->Mcrud->judul_web(); ?>">
 	<base href="<?php echo base_url();?>"/>
@@ -74,6 +74,9 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 	<link rel="stylesheet" type="text/css" href="assets/fancybox/jquery.fancybox.css">
 	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
 	<script type="text/javascript" src="assets/fancybox/jquery.fancybox.js"></script>
+
+
+
 </head>
 <body>
 
@@ -95,12 +98,14 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 				<!-- end mobile sidebar expand / collapse button -->
 
 				<!-- begin header navigation right -->
-				<a href="" class="navbar-brand"><span class="navbar-logo"><center><b>BRUGAK</b></center></a>
+<!--                judul header pada bagian paling atas-->
+				<a href="" class="navbar-brand"><span class="navbar-logo"><center><b>BRUGAKKU</b></center></a>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle icon" aria-expanded="false">
 							<i class="ion-ios-bell"></i>
-							<span class="label" id="jml_notif_bell">0</span>
+<!--                            dirubahjo-->
+							<span class="label" id="jml_notif_bell"><?= $jml_notif; ?></span>
 						</a>
 						<ul class="dropdown-menu media-list pull-right animated fadeInDown" id="notif_bell"></ul>
 					</li>
@@ -113,7 +118,10 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 						</a>
 						<ul class="dropdown-menu animated fadeInLeft">
 							<li class="arrow"></li>
+<!--                            baris href=profile.hmtl dan href=settings.html merujuk ke rute yg didefinisikan di routes.php-->
 							<li <?php if($menu=='profile'){echo " class='active'";}?>><a href="profile.html">Profile</a></li>
+							<li class="divider"></li>
+                            <li <?php if($menu=='settings'){echo " class='active' ";}?>><a href="settings.html">Setting</a></li>
 							<li class="divider"></li>
 							<li><a href="web/logout.html">Logout</a></li>
 						</ul>
@@ -144,32 +152,65 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 				</ul>
 				<!-- end sidebar user -->
 
+<!--                INI MENU SIDEBAR-->
 				<!-- begin sidebar nav -->
 				<ul class="nav">
 					<li class="nav-header"><big>MENU NAVIGASI</big></li>
 					<li class="has-sub<?php if($menu=='users' AND $sub_menu=='' or $menu=='dashboard'){echo " active";} ?>">
 						<a href="dashboard.html">
 						    <i class="fa fa-th-large"></i>
-						    <span>Dashboard</span>
+						    <span>Dashboards</span>
 					   </a>
 					</li>
 					<?php if ($level == 'superadmin'):?>
+<!--                    jika level = superadmin MAKA ditambahkan tampilan side-bar menu 'data pengguna' dibawah ini-->
 						<li class="has-sub<?php if($menu=='datapengguna' AND $sub_menu=='' or $menu=='datapengguna'){echo " active";} ?>">
-							<a href="datapengguna/v.html">
-								<i class="fa fa-users"></i> <span>Data Pengguna</span>
+<!--							ini nembak ke controller Datapengguna.php lalu ke 'function v'-->
+                            <a href="datapengguna/v.html">
+								<i class="fa fa-users"></i> <span>Data Penggunasnya</span>
 							</a>
 						</li>
 					<?php endif; ?>
 					<li class="has-sub<?php if($menu=='laporan_harian'){echo " class='active'";} ?>">
-						<a href="datapengguna/v.html">
+<!--						<a href="datapengguna/v.html">-->
+						<a href="checklist_kebersihan/v.html">
 							<i class="fa fa-calendar-check-o"></i> <span>Checklist Kebersihan</span>
 						</a>
 					</li>
-					<li class="has-sub<?php if($menu=='laporan_bulanan'){echo " class='active'";} ?>">
-						<a href="datapengguna/v.html">
-							<i class="fa fa-file-text"></i> <span>Laporan Bulanan</span>
-						</a>
-					</li>
+
+                    <!--ditambahkan jo kondisi-->
+                    <?php if($this->session->userdata('level')=='superadmin'){?>
+                        <!--menu list dikosongkan jika role bukan 'superadmin'-->
+                        <li class="has-sub<?php if($menu=='reports' AND $sub_menu=='' or $menu=='reports'){echo " active";} ?>">
+                            <!--                        baris dibawah mengarah ke controllers Datapengguna, dan function 'function v' -->
+                            <!--						<a href="datapengguna/v.html">-->
+                            <a href="reports/v.html">
+                                <!--						<a href="datapengguna/cetak_laporan.html">-->
+                                <i class="fa fa-file-text"></i> <span>Laporan Bulanans</span>
+                            </a>
+                        </li>
+                    <?php } ?>
+
+                    <?php if($this->session->userdata('level')=='MR.CLEAN'){?>
+                        <!--menu list dikosongkan jika role bukan 'superadmin'-->
+                        <li class="has-sub<?php if($menu=='reports' AND $sub_menu=='' or $menu=='reports'){echo " active";} ?>">
+                            <!--                        baris dibawah mengarah ke controllers Datapengguna, dan function 'function v' -->
+                            <!--						<a href="datapengguna/v.html">-->
+                            <a href="reports/v.html">
+                                <!--						<a href="datapengguna/cetak_laporan.html">-->
+                                <i class="fa fa-file-text"></i> <span>Laporan Bulanans</span>
+                            </a>
+                        </li>
+                    <?php } ?>
+
+<!--                    <li class="has-sub--><?php //if($menu=='reports' AND $sub_menu=='' or $menu=='reports'){echo " active";} ?><!--">-->
+<!--<!--                        baris dibawah mengarah ke controllers Datapengguna, dan function 'function v' -->-->
+<!--<!--						<a href="datapengguna/v.html">-->-->
+<!--						<a href="reports/v.html">-->
+<!--<!--						<a href="datapengguna/cetak_laporan.html">-->-->
+<!--							<i class="fa fa-file-text"></i> <span>Laporan Bulanans</span>-->
+<!--						</a>-->
+<!--					</li>-->
 						
 					<!-- <li class="has-sub <?php //if($menu=='laporan_harian' OR $menu=='laporan_bulanan'){echo " active";} ?>">
 						<a href="javascript:;">
@@ -196,9 +237,9 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 					<li>
 						<a href="web/logout.html">
 							<div class="icon-img">
-						    <i class="fa fa-sign-out bg-red"></i>
+						    <i class="fa fa-sign-out bg-red-darker"></i>
 						    </div>
-						    <span>Logout</span>
+						    <span>Logouts</span>
 						</a>
 					</li>
 					    <!-- begin sidebar minify button -->
@@ -238,6 +279,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 								</div>
 							</a>
 						</div>
+
 						<div class="col-md-4 col-sm-4 col-xs-4 main-menu">
 							<a href="datapengguna/v.html" class="btn-main-menu">
 								<div class="btn-icon icon-file">

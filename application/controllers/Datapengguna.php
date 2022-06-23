@@ -5,19 +5,33 @@ class Datapengguna extends CI_Controller {
 
 	public function index()
 	{
+//        <a href="datapengguna/v.html">
 		redirect('datapengguna/v');
 	}
 
+	public function test($aksi=""){
+	    if($aksi=="t"){
+            $p ="testtambah";
+            $data["test"]="Dengan aksi parameter T";
+        } else {
+            $p = "test";
+            $data["test"]="Tanpa aksi parameter T";
+        }
+        $this->load->view("datapengguna/$p",$data);
+    }
+
+//    ini dijalankan pertama setelah dari header ketika di klik menu Data Pengguna
 	public function v($aksi='', $id='')
 	{
 		$id = hashids_decrypt($id);
 		$ceks 	 = $this->session->userdata('username');
 		$id_user = $this->session->userdata('id_user');
 		$level 	 = $this->session->userdata('level');
-		
+
+//		tidak ada session userdata 'username', maka di arahkan ke controller Web.php lalu ke 'function login'
 		if(!isset($ceks)) {
 			redirect('web/login');
-		}else{
+		} else {
 			
 			if ($level != 'superadmin') {
 				redirect('404_content');
@@ -37,8 +51,7 @@ class Datapengguna extends CI_Controller {
 				$data['judul_web'] 	  = "Edit Data Pengguna";
 				$data['pengguna'] = $this->Guzzle_model->getUserById($id);
 				if ($data['pengguna']['id']=='') {redirect('404');}
-			}
-			elseif ($aksi == 'h') {
+			}elseif ($aksi == 'h') {
 				$cek_data = $this->Guzzle_model->getUserById($id);
 				if (count($cek_data) != 0 AND $cek_data['role'] != 'superadmin') {
 					$this->Guzzle_model->deleteUser($id);
@@ -58,10 +71,13 @@ class Datapengguna extends CI_Controller {
 				}
 			} else {
 				$p = "index";
-				$data['judul_web'] 	  = "Pengguna";
+				$data['judul_web'] 	  = "Penggunases ";
 			}
 
 			$this->load->view('header', $data);
+//			dirubahjo
+//			$this->load->view("datapengguna/cetak_laporan");
+//            $p berdasarkan default value ketika parameter '$aksi'='' alias kosong
 			$this->load->view("datapengguna/$p", $data);
 			$this->load->view('footer');
 

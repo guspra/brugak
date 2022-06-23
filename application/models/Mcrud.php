@@ -83,9 +83,14 @@ class Mcrud extends CI_Model {
 
 	function judul_web($id='')
 	{
-		$data = 'BRUGAK';
+		$data = 'BRUGAKS';
 		return $data;
 	}
+
+	function judul_web_panjang(){
+        $data = "BMN RUMAH TANGGA DAN KENDARAANs";
+        return $data;
+    }
 
 	public function cek_filename($file='')
 	{

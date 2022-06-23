@@ -30,8 +30,10 @@ class Guzzle_model extends CI_model {
         return $result;
     }
 
+
     public function getUserById($id)
     {
+//        'User/detail/' mengarah ke brugakapi , controller User.php dan function detail
         $response = $this->_client->request('GET', 'User/detail/' . $id);
         $result = json_decode($response->getBody()->getContents(), true);
         return $result;
@@ -65,6 +67,7 @@ class Guzzle_model extends CI_model {
      // Model Ruangan
     public function getAllRuangan()
     {
+//        _client didefinisikan di function __construct, dmn disana telah terdefinisi header2 value dsb
         $response = $this->_client->request('GET', 'Ruangan');
         $result = json_decode($response->getBody()->getContents(), true);
         return $result;
@@ -123,6 +126,33 @@ class Guzzle_model extends CI_model {
         $result = json_decode($response->getBody()->getContents(), true);
         return $result;
     }
+    public function getStatusRuanganByTanggal($tgl_awal, $tgl_akhir)
+    {
+        $response = $this->_client->request('GET', 'StatusRuangan/statusRuanganByTanggal/' . $tgl_awal . '/' . $tgl_akhir);
+        $result = json_decode($response->getBody()->getContents(), true);
+        return $result;
+    }
+
+    public function getStatusRuanganByTanggalByID($tgl_awal, $tgl_akhir,$idRuangan)
+    {
+        $response = $this->_client->request('GET', 'StatusRuangan/statusRuanganByTanggalByID/' . $tgl_awal . '/' . $tgl_akhir. '/' .$idRuangan);
+        $result = json_decode($response->getBody()->getContents(), true);
+        return $result;
+    }
+
+//    dirubahJo
+    public function tesData($IdRuangan){
+        $response = $this->_client->request('GET','StatusRuangan/testData/'.$IdRuangan);
+        $result = json_decode($response->getBody()->getContents(),true);
+        return $result;
+    }
+
+    public function getStatusShiftWaktu($IdRuangan, $Tanggal, $Waktu){
+        $response = $this->_client->request('GET','StatusRuangan/getStatusShiftWaktu/'.$IdRuangan . '/' . $Tanggal. '/' .$Waktu);
+        $result = json_decode($response->getBody()->getContents(),true);
+        return $result;
+    }
+
 
     public function createStatusRuangan($data)
     {
