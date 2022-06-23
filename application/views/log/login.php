@@ -6,7 +6,7 @@
 					<a class="color-bg" href="http://www.freepik.com">Designed by pikisuperstar / Freepik</a>
 <!--					<center><img src="assets/login/images/img-login1.png" alt="IMG"></img></center>-->
 <!--                    jorubah-->
-					<center><img src="assets/login/images/household.png" alt="IMG"></img></center>
+					<center><img src="assets/login/images/img-login1.png" alt="IMG"></img></center>
 				</div>
 					<form class="login100-form validate-form" action="" method="post">
 						<span class="login100-form-title">
@@ -21,17 +21,6 @@
                             <?php
                             echo $this->session->flashdata('msg');
                             ?>
-                        </div>
-                        <div>
-                            <?php if ($this->session->flashdata('status')) {
-                                echo ucwords($this->session->flashdata('status'));
-                            }
-                            ?>
-                        </div>
-                        <div>
-                            <?php if($this->session->flashdata('button_login')){
-                                echo ucwords($this->session->flashdata('button_login'));
-                            } ?>
                         </div>
 
 						<div class="wrap-input100 validate-input" data-validate = "Username is required">

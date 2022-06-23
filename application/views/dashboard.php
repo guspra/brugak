@@ -16,8 +16,7 @@ $level  = $this->session->userdata('level');
 
 	<div class="card border-0 p-20 shadow overflow-hidden">
 		<div class="card-body">
-			<h1 class="page-header">Kebersihan Ruangans</h1>
-			<h1 class="page-header"><?php echo $this->session->userdata('id_user');?> - <?php echo $this->session->userdata('nama')?> - <?php echo $this->session->userdata('level')?></h1>
+			<h1 class="page-header">Kebersihan Ruangan</h1>
 			<h5><?php echo $this->Mcrud->hari_id(date('d-m-Y')); ?>, <?php echo $this->Mcrud->tgl_id(date('d-m-Y'),'full'); ?></h5>
 			<hr class="mt-15 mb-15">
 			<div class="c-content-accordion-1 c-theme dashboard-all">

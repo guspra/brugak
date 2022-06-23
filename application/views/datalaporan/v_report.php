@@ -296,8 +296,8 @@ $pdf->lastPage();
 // ---------------------------------------------------------
 
 //Close and output PDF document
-$pdf->Output('example_005.pdf', 'I');
-//$pdf->Output('example_005.pdf', 'D');
+//$pdf->Output('example_005.pdf', 'I');
+$pdf->Output('example_005.pdf', 'D');
 
 //============================================================+
 // END OF FILE

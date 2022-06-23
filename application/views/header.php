@@ -99,7 +99,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 
 				<!-- begin header navigation right -->
 <!--                judul header pada bagian paling atas-->
-				<a href="" class="navbar-brand"><span class="navbar-logo"><center><b>BRUGAKKU</b></center></a>
+				<a href="" class="navbar-brand"><span class="navbar-logo"><center><b>BRUGAK</b></center></a>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle icon" aria-expanded="false">
@@ -167,7 +167,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 						<li class="has-sub<?php if($menu=='datapengguna' AND $sub_menu=='' or $menu=='datapengguna'){echo " active";} ?>">
 <!--							ini nembak ke controller Datapengguna.php lalu ke 'function v'-->
                             <a href="datapengguna/v.html">
-								<i class="fa fa-users"></i> <span>Data Penggunasnya</span>
+								<i class="fa fa-users"></i> <span>Data Pengguna</span>
 							</a>
 						</li>
 					<?php endif; ?>
@@ -179,14 +179,14 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 					</li>
 
                     <!--ditambahkan jo kondisi-->
-                    <?php if($this->session->userdata('level')=='superadmin'){?>
+                    <?php if($this->session->userdata('level')=='superadmin' or $this->session->userdata('level')=='pimti'){?>
                         <!--menu list dikosongkan jika role bukan 'superadmin'-->
                         <li class="has-sub<?php if($menu=='reports' AND $sub_menu=='' or $menu=='reports'){echo " active";} ?>">
                             <!--                        baris dibawah mengarah ke controllers Datapengguna, dan function 'function v' -->
                             <!--						<a href="datapengguna/v.html">-->
                             <a href="reports/v.html">
                                 <!--						<a href="datapengguna/cetak_laporan.html">-->
-                                <i class="fa fa-file-text"></i> <span>Laporan Bulanans</span>
+                                <i class="fa fa-file-text"></i> <span>Laporan Bulanan</span>
                             </a>
                         </li>
                     <?php } ?>
@@ -198,40 +198,11 @@ $sub_menu3 = strtolower($this->uri->segment(3));
                             <!--						<a href="datapengguna/v.html">-->
                             <a href="reports/v.html">
                                 <!--						<a href="datapengguna/cetak_laporan.html">-->
-                                <i class="fa fa-file-text"></i> <span>Laporan Bulanans</span>
+                                <i class="fa fa-file-text"></i> <span>Laporan Bulanan</span>
                             </a>
                         </li>
                     <?php } ?>
 
-<!--                    <li class="has-sub--><?php //if($menu=='reports' AND $sub_menu=='' or $menu=='reports'){echo " active";} ?><!--">-->
-<!--<!--                        baris dibawah mengarah ke controllers Datapengguna, dan function 'function v' -->-->
-<!--<!--						<a href="datapengguna/v.html">-->-->
-<!--						<a href="reports/v.html">-->
-<!--<!--						<a href="datapengguna/cetak_laporan.html">-->-->
-<!--							<i class="fa fa-file-text"></i> <span>Laporan Bulanans</span>-->
-<!--						</a>-->
-<!--					</li>-->
-						
-					<!-- <li class="has-sub <?php //if($menu=='laporan_harian' OR $menu=='laporan_bulanan'){echo " active";} ?>">
-						<a href="javascript:;">
-							<b class="caret pull-right"></b>
-							<i class="fa fa-check-square bg-gray"></i>
-							<span>Laporan Kebersihan</span>
-						</a>
-						<ul class="sub-menu">
-							<li <?php //if($menu=='laporan_harian'){echo " class='active'";} ?>>
-								<a href="dipa/v.html">
-									<i class="fa fa-file-text"></i> <span>Checklist Kebersihan</span>
-								</a>
-							</li>
-							<li <?php //if($menu=='laporan_bulanan'){echo " class='active'";} ?>>
-								<a href="rpd">
-									<i class="fa fa-calendar-check-o"></i> <span>Laporan Bulanan</span>
-								</a>
-							</li>
-						</ul>
-					</li> -->
-				<!-- </ul> -->
 
 					<li class="nav-header"></li>
 					<li>
@@ -239,7 +210,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 							<div class="icon-img">
 						    <i class="fa fa-sign-out bg-red-darker"></i>
 						    </div>
-						    <span>Logouts</span>
+						    <span>Logout</span>
 						</a>
 					</li>
 					    <!-- begin sidebar minify button -->

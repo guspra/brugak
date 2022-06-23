@@ -13,7 +13,7 @@
 	<script src="assets/login/js/main.js"></script>
 
 	<footer class="text-center">
-          <p class="c-copyright c-font-grey">Kemenkumham Kanwil-NTBs
+          <p class="c-copyright c-font-grey">Kemenkumham Kanwil-NTB
             <span class="c-font-grey-3">Copyright &#169; <script type='text/javascript'>var creditsyear = new Date();document.write(creditsyear.getFullYear());</script></span>
           </p>
         

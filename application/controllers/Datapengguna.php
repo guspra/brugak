@@ -71,7 +71,7 @@ class Datapengguna extends CI_Controller {
 				}
 			} else {
 				$p = "index";
-				$data['judul_web'] 	  = "Penggunases ";
+				$data['judul_web'] 	  = "Pengguna";
 			}
 
 			$this->load->view('header', $data);

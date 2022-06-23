@@ -25,8 +25,7 @@ class Web extends CI_Controller
 //            redirect('web/login');
         } else {
 //            ditambahjo
-            $this->session->set_flashdata('status','kamu belum login');
-            $data['judul_web'] = "Halaman Logins - " . $this->Mcrud->judul_web();
+            $data['judul_web'] = "Halaman Login - " . $this->Mcrud->judul_web();
             $this->load->view('log/header', $data);
             $this->load->view('log/login', $data);
             $this->load->view('log/footer', $data);
@@ -82,30 +81,9 @@ class Web extends CI_Controller
 								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 								  <span aria-hidden="true">&times;</span>
 							  </button>
-							  <div class="container-fluid">
-							        <strong>"ini get status code :"."' . $response->getStatusCode() . '"</strong>
-							        <br>
-							        <strong>"ini header client service :  "."' . $responseBody->header_client_service . '"</strong>
-							        <br>
-							        <strong>"ini header auth key : "."' . $responseBody->header_auth_key . '"</strong>
-							        <br>
+							  <div class="container-fluid">				        							        
 							        <strong>"' . $responseBody->message . '"</strong>
-							        <br>
-							        <strong>"token : "."' . $responseBody->token . '"." broh"</strong>
-							        <br>
-							        <strong>"last login "."' . $responseBody->last_login . '"." broh"</strong>
-							        <br>
-							        <strong>"' . $responseBody->status . '"</strong>
-							        <br>
-							        <strong>"' . $responseBody->username . '"</strong>
-							        <br>
-							        <strong>"' . $responseBody->password . '"</strong>
-							        <br>
-							        <strong>"' . $responseBody->hashed_password . '"</strong>
-							        <br>
-							        <strong>"' . $responseBody->status_koneksi . '"</strong>
-							        <br>
-							        <strong>"jumlah baris "."' . $responseBody->jumlah_baris . '"</strong>
+							        <br>							      
                               </div>
 							  
 						</div>'
