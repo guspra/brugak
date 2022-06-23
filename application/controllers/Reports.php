@@ -50,7 +50,7 @@ class Reports extends CI_Controller
                 $this->id_ruangan_global = $this->input->post("id_ruangan");
                 $data["id_ruangan_global"] = $this->id_ruangan_global;
                 $p = "range_tgl";
-                $data['judul_web'] = "Cetak Laporans";
+                $data['judul_web'] = "Checklist Kebersihan";
                 $data['filter_date_dari'] = $this->input->post('dari_tgl');
                 $data['filter_date_sampai'] = $this->input->post('sampai_tgl');
                 $data["id_ruangan_selected"] = $this->input->post("id_ruangan");
@@ -205,7 +205,7 @@ class Reports extends CI_Controller
             } else {
 
                 $p = "range_tgl";
-                $data['judul_web'] = "Cetak Laporans";
+                $data['judul_web'] = "Checklist Kebersihan";
                 $data["laporan_list"] = $this->Guzzle_model->getAllStatusRuangan();
                 $data["id_ruangan_selected"] = null;
                 $data["ruangan_all"] = $this->Guzzle_model->getAllRuangan();
@@ -293,7 +293,9 @@ class Reports extends CI_Controller
             redirect("web/login");
         } else {
             $p = "range_tgl";
-            $data['judul_web'] = "Cetak Laporans";
+//            $data['judul_web'] = "Cetak Laporans";
+            $data['judul_web'] = "Checklist Kebersihan";
+
 
             $data['filter_date_dari'] = $this->input->post('dari_tgl');
             $data['filter_date_sampai'] = $this->input->post('sampai_tgl');

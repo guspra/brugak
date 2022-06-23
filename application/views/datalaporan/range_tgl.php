@@ -38,7 +38,9 @@ $link4 = strtolower($this->uri->segment(4));
                 <!--                MulaiDisini Lihat di datapengguna/index.php (views)-->
                 <center>
                     <div class="table-responsive">
-                        <h1>Cetak Laporan</h1>
+<!--                        <h1>Checklist Kebersihan</h1>-->
+                        <h1><?php echo ucwords($judul_web)?></h1>
+<!--
                         <!--                        <form action="/brugak/reports/cari_laporan.html" method="post">-->
                         <form action="<?php echo $link1; ?>/<?php echo $link2; ?>/f.html" method="post">
 

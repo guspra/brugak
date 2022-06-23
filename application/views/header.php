@@ -171,12 +171,12 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 							</a>
 						</li>
 					<?php endif; ?>
-					<li class="has-sub<?php if($menu=='laporan_harian'){echo " class='active'";} ?>">
-<!--						<a href="datapengguna/v.html">-->
-						<a href="checklist_kebersihan/v.html">
-							<i class="fa fa-calendar-check-o"></i> <span>Checklist Kebersihan</span>
-						</a>
-					</li>
+<!--					<li class="has-sub--><?php //if($menu=='laporan_harian'){echo " class='active'";} ?><!--">-->
+<!--<!--						<a href="datapengguna/v.html">-->-->
+<!--						<a href="checklist_kebersihan/v.html">-->
+<!--							<i class="fa fa-calendar-check-o"></i> <span>Checklist Kebersihan</span>-->
+<!--						</a>-->
+<!--					</li>-->
 
                     <!--ditambahkan jo kondisi-->
                     <?php if($this->session->userdata('level')=='superadmin' or $this->session->userdata('level')=='pimti'){?>
@@ -186,7 +186,10 @@ $sub_menu3 = strtolower($this->uri->segment(3));
                             <!--						<a href="datapengguna/v.html">-->
                             <a href="reports/v.html">
                                 <!--						<a href="datapengguna/cetak_laporan.html">-->
-                                <i class="fa fa-file-text"></i> <span>Laporan Bulanan</span>
+
+                                <!--cuys-->
+<!--                                <i class="fa fa-file-text"></i> <span>Laporan Bulanan</span>-->
+                                <i class="fa fa-calendar-check-o"></i> <span>Checklist Kebersihan</span>
                             </a>
                         </li>
                     <?php } ?>
