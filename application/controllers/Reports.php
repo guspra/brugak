@@ -8,6 +8,7 @@ class Reports extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+//        $this->load->library('pdf_report');
         $this->load->library('pdf_report');
 //        $this->load->model('Guzzle_model');
         $this->load->helper('security');
@@ -103,14 +104,14 @@ class Reports extends CI_Controller
                     $this->load->view("footer");
                     date_default_timezone_set('Asia/Jakarta');
                 } else if ($this->input->post("id_ruangan") != "0" || $this->input->post("id_ruangan") != 0) {
+                    //ini yang harus ditiru
                     $data['laporan_list'] = $this->Guzzle_model->getStatusRuanganByTanggalByID($tanggalAwal, $tanggalAkhir, $this->input->post("id_ruangan"));
                     $item_ruangan = $this->Guzzle_model->getRuanganById($this->input->post('id_ruangan'));
                     $data["item_ruangan"] = $item_ruangan["nama"];
 
-//                    if ($this->session->has_userdata("nama_ruangan")) {
-//                        $this->session->unset_userdata("nama_ruangan");
+//                    if($this->session->has_userdata('id_ruangan_dipilih')){
+//                        $this->session->unset_userdata('id_ruangan_dipilih');
 //                    }
-//                    $this->session->set_userdata('nama_ruangan', $item_ruangan["nama"]);
 
                     if ($this->session->has_userdata("id_ruangan_selected")) {
                         $this->session->unset_userdata("id_ruangan_selected");
@@ -160,23 +161,17 @@ class Reports extends CI_Controller
                 $data["tgl_first"] = $this->session->userdata("tgl_awal_sql");
                 $data["tgl_end"] = $this->session->userdata("tgl_akhir_sql");
 
-//                $data['firstTgl'] = strtotime($data["tgl_first"]);
-//                $data['endTgl'] = strtotime($data["tgl_end"]);
-//                $data['jarakWaktu'] = abs($data["endTgl"]-$data["firstTgl"]);
-//                $data['numberDays'] = $data['jarakWaktu'] / 86400;
-//                $data['numberDays'] = intval($data['numberDays']) + 1;
-
                 $firstTgl = strtotime($data["tgl_first"]);
                 $endTgl = strtotime($data["tgl_end"]);
 //                var_dump($firstTgl);
                 $jarakWaktu = abs($endTgl - $firstTgl);
                 $numberDays = $jarakWaktu / 86400;
                 $numberDays = intval($numberDays) + 1;
-//                $numberDays = intval($numberDays) ;
                 $data['laporan_status_ruangan'] = [];
 
                 for($i=0; $i<$numberDays; $i++){
                     $getTgl = date('Y-m-d',strtotime("+" . $i . "day",strtotime($data['tgl_first'])));
+//                    var_dump($getTgl);
                     $pagi = $this->Guzzle_model->getStatusShiftWaktu($this->session->userdata('id_ruangan_selected'),$getTgl,"PAGI");
                     $siang = $this->Guzzle_model->getStatusShiftWaktu($this->session->userdata('id_ruangan_selected'),$getTgl,"SIANG");
                     $sore = $this->Guzzle_model->getStatusShiftWaktu($this->session->userdata('id_ruangan_selected'),$getTgl,"SORE");
@@ -201,6 +196,7 @@ class Reports extends CI_Controller
                 }
 
                 $this->load->view('datalaporan/v_report',$data);
+//                $this->load->view('datalaporan/example_002',$data);
 
             } else {
 
@@ -212,6 +208,7 @@ class Reports extends CI_Controller
                 $data["current_date"] = date('Y-m-d');
                 $data['filter_date_dari'] = null;
                 $data['filter_date_sampai'] = null;
+                //dari sini disesuaikan
                 $data["item_ruangan"] = null;
                 $data["id_ruangan_global"] = "10";
 

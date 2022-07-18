@@ -64,6 +64,34 @@ class Mcrud extends CI_Model {
 		return $user['nama'];
 	}
 
+    public static function tgl_idn($date, $bln='')
+    {
+        date_default_timezone_set('Asia/Singapore');
+        $str = explode('-', $date);
+        $bulan = array(
+            '01' => 'Januari',
+            '02' => 'Februari',
+            '03' => 'Maret',
+            '04' => 'April',
+            '05' => 'Mei',
+            '06' => 'Juni',
+            '07' => 'Juli',
+            '08' => 'Agustus',
+            '09' => 'September',
+            '10' => 'Oktober',
+            '11' => 'November',
+            '12' => 'Desember',
+        );
+        if ($bln == '') {
+            $hasil = $str['2'] . "-" . substr($bulan[$str[1]],0,3) . "-" .$str[0];
+        }elseif ($bln == 'full') {
+            $hasil = $str['2'] . " " . $bulan[$str[1]] . " " .$str[0];
+        }else {
+            $hasil = $bulan[$str[1]];
+        }
+        return $hasil;
+    }
+
 	public function get_pengawas_name_by_id($id)
 	{
 		if ($id == 0) {

@@ -47,7 +47,7 @@ function getBulan($bln)
             return "November";
             break;
         case 12:
-            return "Des";
+            return "Desember";
             break;
     }
 }

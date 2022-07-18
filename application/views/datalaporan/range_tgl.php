@@ -83,16 +83,8 @@ $link4 = strtolower($this->uri->segment(4));
                                         </td>
                                     <?php endif; ?>
                                     <td width="5px"></td>
-
-                                    <!--                                    button filter disamping-->
-                                    <!--                                    <td style="">-->
-                                    <!--                                        <button type="submit" class="btn btn-primary" name="filter">-->
-                                    <!--                                            Filter-->
-                                    <!--                                        </button>-->
-                                    <!--                                    </td>-->
                                 </tr>
                             </table>
-                            <!--                            mencoba-->
                             <table>
                                 <thead>
                                 <tr style="height: 15px;"></tr>
@@ -112,17 +104,14 @@ $link4 = strtolower($this->uri->segment(4));
                                     <th>
 
                                         <div class="form-group" style="align-items: center; text-align: center">
-                                            <label hidden class="control-label col-lg-1" style="text-align: center">Ruangan</label>
+                                            <label hidden class="control-label col-lg-1"
+                                                   style="text-align: center">
+                                                Ruangan
+                                            </label>
                                             <div class="col-lg-12">
                                                 <select class="form-control default-select2" id="id_ruangan"
                                                         name="id_ruangan" required>
-<!--                                                    SAMPAIDISINI-->
-<!--                                                    <option value="">- Pilih -</option>-->
-<!--                                                    <option value="0"-->
-<!--                                                        --><?php //if ($id_ruangan_selected!=null && $id_ruangan_selected==0 ):?>
-<!--                                                            selected-->
-<!--                                                        --><?php //endif;?><!-->Pilih Ruangan</option>-->
-<!--                                                    taruh disini-->
+
                                                     <?php foreach ($ruangan_all as $item):?>
                                                         <option value="<?php echo $item["id"]?>"
                                                             <?php if($id_ruangan_selected==$item["id"]):?>

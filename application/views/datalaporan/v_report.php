@@ -25,7 +25,7 @@
  */
 
 // Include the main TCPDF library (search for installation path).
-// hilangkan fungsi require once_disini karena kita sudah sisipkan filenya di library pdf_report
+// nanti hilangkan fungsi require once_disini karena kita sudah sisipkan filenya di library pdf_report
 //require_once('tcpdf_include.php');
 
 // create new PDF document
@@ -103,6 +103,7 @@ $ruangan .='<table><tr><td class="j-bold j-arial-font"><h3>'.$item_ruangan;
 $ruangan .='</h3></td></tr></table></div>';
 $pdf->WriteHTMLCell(0,0,'','',$ruangan,0,1,0,true,'L',true);
 
+//beginning of div
 $table_header = '<div class="table-containers">';
 $table_header .= '<table style="border:1px solid #000; padding:6px;">';
 $table_header .= '<thead>';
@@ -123,7 +124,6 @@ foreach ($shifts as $key=>$val){
     }
 }
 $table_header .='</tr>';
-
 $table_header .='<tr style="background-color: #e8c3be;">';
 foreach ($shifts as $key=>$val){
     foreach ($roles as $i => $v){
@@ -145,6 +145,7 @@ foreach ($laporan_status_ruangan as $index=>$val){
 
         //PAGI
         //ob pagi
+    //telusuri kondisinya dari sini
         if($val->status_ob_pagi=="SUDAH"){
             $table_header .= '<td class="icon-checklist" style="border:1px solid #000; padding-top: 25px; padding-bottom: 25px; padding-left: 20px; padding-right: 20px">';
             $table_header .= '<img src="./assets/img/CheckGreen.png" alt="" width="15" height="15">';
@@ -288,16 +289,16 @@ foreach ($laporan_status_ruangan as $index=>$val){
 $table_header .='</tbody>';
 $table_header .="</table>";
 $table_header .="</div>";
+//end of div
 $pdf->WriteHTMLCell(0,0,'','',$table_header,0,1,0,true,'C',true);
-//lanjutkan disini niru C:\xampp\htdocs\tes_tcpdf\application\views\laporan\v_report.php
 // move pointer to last page
 $pdf->lastPage();
 
 // ---------------------------------------------------------
 
 //Close and output PDF document
-//$pdf->Output('example_005.pdf', 'I');
-$pdf->Output('example_005.pdf', 'D');
+$pdf->Output('example_005.pdf', 'I');
+//$pdf->Output('example_005.pdf', 'D');
 
 //============================================================+
 // END OF FILE
