@@ -171,7 +171,7 @@ $sub_menu3 = strtolower($this->uri->segment(3));
 							</a>
 						</li>
 					<?php endif; ?>
-                    
+
                     
                     <?php if($this->session->userdata('level')=='superadmin' or $this->session->userdata('level')=='pimti'){ ?> 
                         <li class="has-sub<?php if($menu=='reports_v2' and $sub_menu=='' or $menu=='reports_v2'){echo " active";}?>">

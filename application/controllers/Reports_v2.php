@@ -132,6 +132,7 @@ class Reports_v2 extends CI_Controller
 
                         $dt_api = $ruang_api."-".$tgl_api;
                         //struktur : $waktu_data => id_ruangan + tanggal
+                        //$indexCoba belum berubah, sebelum looping foreach $data['laporan_list'] berakhir
                         if($dt_api==$waktu_data){
                             if($waktu_api =='PAGI'){
                                 $data['laporan_tgl'][$indexCoba]->status_ob_pagi=$val["status_ob"];
