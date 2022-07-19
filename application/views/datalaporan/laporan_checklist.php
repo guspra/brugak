@@ -204,7 +204,14 @@ $table_header .='<thead>';
 $table_header .= '<tr style="background-color: #e8c3be;"> <th align="center" colspan="2" rowspan="3" 
 style="vertical-align: middle; text-align: center;border: 1px solid #000;">';
 
-$table_header .='<b>Tanggals</b></th>';
+//posisikan 'Tanggal' di center vertical dengan cara manipulasi warna text 'Tanggal' sama spt warna background table header
+$table_header .= '<b style="color: #e8c3be;">Tanggal</b>';
+$table_header .='<b style="color: #e8c3be">Tanggal</b>';
+$table_header .='<b>Tanggal</b>';
+
+$table_header .='<b style="color: #e8c3be">Tanggal</b>';
+$table_header .='<b style="color: #e8c3be;">Tanggal</b></th>';
+
 
 foreach ($shifts as $id=>$val){
     $table_header .='<th colspan="4" align="center" style="border: 1px solid #000;"><b>'.ucwords($val).'</b></th>';
@@ -416,8 +423,8 @@ $pdf->Ln();
 $today = date("Y-m-d");
 $today_id = tgl_indo($today);
 
-//$pdf->Output("Laporan Kebersihan".$today_id."_".$nama_ruangan.'.pdf', 'I');
-$pdf->Output("Laporan Kebersihan".$today_id."_".$nama_ruangan.'.pdf', 'D');
+$pdf->Output("Laporan Kebersihan".$today_id."_".$nama_ruangan.'.pdf', 'I');
+//$pdf->Output("Laporan Kebersihan".$today_id."_".$nama_ruangan.'.pdf', 'D');
 
 //============================================================+
 // END OF FILE
