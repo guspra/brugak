@@ -423,8 +423,8 @@ $pdf->Ln();
 $today = date("Y-m-d");
 $today_id = tgl_indo($today);
 
-$pdf->Output("Laporan Kebersihan".$today_id."_".$nama_ruangan.'.pdf', 'I');
-//$pdf->Output("Laporan Kebersihan".$today_id."_".$nama_ruangan.'.pdf', 'D');
+//$pdf->Output("Laporan Kebersihan".$today_id."_".$nama_ruangan.'.pdf', 'I');
+$pdf->Output("Laporan Kebersihan".$today_id."_".$nama_ruangan.'.pdf', 'D');
 
 //============================================================+
 // END OF FILE
